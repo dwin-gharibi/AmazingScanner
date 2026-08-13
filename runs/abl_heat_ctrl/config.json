@@ -1,0 +1,30 @@
+{
+ "name": "abl_heat_ctrl",
+ "epochs": 9,
+ "steps_per_epoch": 160,
+ "batch_size": 32,
+ "lr": 0.002,
+ "min_lr_ratio": 0.02,
+ "warmup_frac": 0.05,
+ "weight_decay": 0.0,
+ "grad_clip": 1.0,
+ "num_workers": 8,
+ "seed": 0,
+ "ema_decay": 0.999,
+ "channels_last": true,
+ "max_minutes": 25.0,
+ "amp": true,
+ "device": "cuda",
+ "extra": {
+  "approach": "heatmap",
+  "size": 256,
+  "base": 24,
+  "depth": 4,
+  "dropout": 0.0,
+  "pad": 0.12,
+  "out_stride": 4,
+  "coord_loss": "wing",
+  "head_dim": 256,
+  "sigma": 1.6
+ }
+}

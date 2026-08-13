@@ -1,0 +1,29 @@
+{
+ "name": "abl_no_bg_prior",
+ "epochs": 9,
+ "steps_per_epoch": 200,
+ "batch_size": 24,
+ "lr": 0.0025,
+ "min_lr_ratio": 0.02,
+ "warmup_frac": 0.05,
+ "weight_decay": 0.0,
+ "grad_clip": 1.0,
+ "num_workers": 8,
+ "seed": 0,
+ "ema_decay": 0.999,
+ "channels_last": true,
+ "max_minutes": 25.0,
+ "amp": true,
+ "device": "cuda",
+ "extra": {
+  "loss": "combined",
+  "crop": 192,
+  "base": 32,
+  "depth": 4,
+  "dropout": 0.0,
+  "bg_prior": false,
+  "crops_per_photo": 5,
+  "page_size": 896,
+  "photo_size": 1440
+ }
+}
