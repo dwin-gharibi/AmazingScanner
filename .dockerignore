@@ -1,0 +1,12 @@
+.venv/
+.git/
+data/
+runs/
+outputs/
+docs/assets/*.gif
+docs/assets/*.jpg
+!docs/assets/examples/
+**/__pycache__/
+*.egg-info/
+.pytest_cache/
+*.log
