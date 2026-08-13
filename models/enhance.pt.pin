@@ -1,0 +1,25 @@
+user preference (2026-08-09, re-verified 2026-08-10): the 24-epoch H100 network
+reads better on the real photographs than the 40-epoch retrain -- and the
+re-verification measured why.
+
+Every network that ever shipped, scored on the *current* frozen benchmark (so
+the numbers are comparable for once) and on the complaint itself -- the
+fraction of page pixels left mid-grey (luma 120..220) after enhancing all 24
+real photographs:
+
+  network                    frozen-val PSNR   grey-band, 24 real pages
+  T4 epoch-9                     12.56 dB         63.1%
+  H100#1 epoch-7                 19.28 dB         27.9%
+  H100#2 epoch-24  (this one)    21.81 dB         16.6%   <- least grey
+  H100#3 epoch-18  (the retrain) 22.20 dB         20.8%
+
+PSNR ranks the retrain first; the grey-band measurement and the eye rank it
+last of the two. The decisive exhibit is img9, a dark leather notebook cover:
+this network whitens it to clean paper (6% grey), the retrain leaves it a
+grey smear (88%). "Grayscale instead of black and white" is that smear.
+
+Pinned checkpoint: epoch 24, val_psnr 21.078 (its own training-time score on
+the older benchmark; 21.81 dB on today's), sha256 10922553e7...
+
+`amazingscanner export` holds this file's model; delete this pin or pass
+--force to let a future run replace it.
