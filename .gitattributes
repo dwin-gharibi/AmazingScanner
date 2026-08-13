@@ -1,0 +1,29 @@
+* text=auto eol=lf
+*.sh      text eol=lf
+*.py      text eol=lf
+Dockerfile* text eol=lf
+Makefile  text eol=lf
+
+*.pt      binary
+*.pth     binary
+*.onnx    binary
+*.png     binary
+*.jpg     binary
+*.jpeg    binary
+*.gif     binary
+*.pdf     binary
+*.zip     binary
+
+*.py      diff=python
+*.md      diff=markdown
+
+*.ipynb   -diff -merge linguist-documentation
+
+docs/assets/**   linguist-generated
+outputs/**       linguist-generated
+docs/REPORT.md   linguist-generated
+docs/CHARTS.md   linguist-generated
+deploy/**        linguist-language=YAML
+notebooks/**     linguist-vendored=false
+
+outputs/report/*.json  merge=ours
