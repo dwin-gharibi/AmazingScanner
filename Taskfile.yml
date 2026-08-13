@@ -1,0 +1,425 @@
+version: "3"
+
+vars:
+  PY: '{{.PY | default "python"}}'
+  RUNS: '{{.RUNS | default "runs"}}'
+  MODELS: '{{.MODELS | default "models"}}'
+  DEVICE: '{{.DEVICE | default "auto"}}'
+  PRESET: '{{.PRESET | default ""}}'
+  IMAGE: '{{.IMAGE | default "amazingscanner:latest"}}'
+
+env:
+  OMP_NUM_THREADS: '{{.OMP_NUM_THREADS | default "4"}}'
+  PYTHONUNBUFFERED: "1"
+
+tasks:
+  default:
+    desc: List every available task
+    silent: true
+    cmds:
+      - task --list
+
+  setup:
+    desc: Create the virtualenv and install everything (CPU torch)
+    summary: |
+      One-time setup. Installs the CPU build of PyTorch from the PyTorch index
+      first — the default wheel pulls ~2 GB of CUDA libraries that nothing here
+      uses on a laptop — then the requirements and the package itself.
+    status:
+      - test -x .venv/bin/python
+    cmds:
+      - python3 -m venv .venv
+      - .venv/bin/pip install --upgrade pip
+      - .venv/bin/pip install --index-url https://download.pytorch.org/whl/cpu torch
+      - .venv/bin/pip install -r requirements.txt
+      - .venv/bin/pip install -e ".[dev]"
+      - cmd: echo "Install the OCR engine too → sudo apt-get install tesseract-ocr"
+        silent: true
+
+  setup:gpu:
+    desc: Install with CUDA wheels instead of the CPU build
+    cmds:
+      - "{{.PY}} -m pip install torch --index-url https://download.pytorch.org/whl/cu121"
+      - "{{.PY}} -m pip install -r requirements.txt"
+      - '{{.PY}} -m pip install -e ".[dev]"'
+
+  setup:hooks:
+    desc: Install the pre-commit hooks
+    cmds:
+      - "{{.PY}} -m pip install pre-commit"
+      - pre-commit install
+      - pre-commit install --hook-type commit-msg
+
+  data:
+    desc: Download the corpora and build the frozen 80/10/10 splits
+    summary: |
+      Everything downstream reads data/splits.json. Skipped when it already
+      exists — delete it to force a rebuild. The split is by *source scan*, so
+      no page ever appears in two splits under a different degradation.
+    generates:
+      - data/splits.json
+    status:
+      - test -f data/splits.json
+    cmds:
+      - "{{.PY}} -m docscanner.data.prepare --all"
+
+  data:own:
+    desc: Convert the Roboflow export of your own photographs (test set only)
+    cmds:
+      - "{{.PY}} -m docscanner.data.prepare --own"
+
+  data:check:
+    desc: Validate the hand-drawn corner labels and render a review sheet
+    deps: [data]
+    cmds:
+      - "{{.PY}} -m docscanner.data.check_labels"
+
+  data:sync:
+    desc: Re-download the real test set from Roboflow (needs ROBOFLOW_API_KEY)
+    preconditions:
+      - sh: test -n "$ROBOFLOW_API_KEY"
+        msg: "ROBOFLOW_API_KEY is not set — export it first"
+    cmds:
+      - "{{.PY}} -m docscanner.data.roboflow --sync"
+
+  data:drift:
+    desc: Fail if the checked-in labels have drifted from Roboflow (CI-shaped)
+    preconditions:
+      - sh: test -n "$ROBOFLOW_API_KEY"
+        msg: "ROBOFLOW_API_KEY is not set — export it first"
+    cmds:
+      - "{{.PY}} -m docscanner.data.roboflow --check"
+
+  train:
+    desc: Train everything and regenerate every artefact (the one command)
+    summary: |
+      Datasets → both networks → the Section 6 dropout arms → the Section 3.2
+      loss ablation → the bonus end-to-end fine-tune → export → every table,
+      chart, figure, demo and report.
+
+        task train
+        task train PRESET=smoke
+        task train DEVICE=cuda PRESET=gpu
+        task train -- --skip-ablations
+    deps: [data]
+    cmds:
+      - >-
+        {{.PY}} -m docscanner.all_in_one
+        --out {{.RUNS}} --device {{.DEVICE}}
+        {{if .PRESET}}--preset {{.PRESET}}{{end}}
+        {{.CLI_ARGS}}
+
+  train:smoke:
+    desc: Every training step at a toy budget — proves the pipeline runs
+    cmds:
+      - task: train
+        vars: {PRESET: smoke}
+
+  train:gpu:
+    desc: Full GPU schedule with mixed precision
+    preconditions:
+      - sh: '{{.PY}} -c "import torch,sys; sys.exit(0 if torch.cuda.is_available() else 1)"'
+        msg: "No CUDA device visible — use `task train` for CPU"
+    cmds:
+      - "{{.PY}} -m docscanner.all_in_one --preset gpu --device cuda --amp --out {{.RUNS}} {{.CLI_ARGS}}"
+
+  train:plan:
+    desc: Print what training would run, without running it
+    cmds:
+      - "{{.PY}} -m docscanner.all_in_one --dry-run {{if .PRESET}}--preset {{.PRESET}}{{end}} {{.CLI_ARGS}}"
+
+  train:enhance:
+    desc: Train only the enhancement network (§3)
+    deps: [data]
+    cmds:
+      - "{{.PY}} -m docscanner.engine.train_enhance --out {{.RUNS}} --device {{.DEVICE}} {{.CLI_ARGS}}"
+
+  train:corners:
+    desc: Train only a corner detector (§5) — pass `-- --approach regression`
+    deps: [data]
+    cmds:
+      - "{{.PY}} -m docscanner.engine.train_corners --out {{.RUNS}} --device {{.DEVICE}} {{.CLI_ARGS}}"
+
+  train:finetune:
+    desc: Bonus §7 — fine-tune the chain through the differentiable warp
+    cmds:
+      - "{{.PY}} -m docscanner.engine.finetune_e2e --out {{.RUNS}} --device {{.DEVICE}} {{.CLI_ARGS}}"
+
+  export:
+    desc: Pick the best run per model and write fp16 deployment weights
+    sources:
+      - "{{.RUNS}}/**/best.pt"
+    generates:
+      - "{{.MODELS}}/*.pt"
+    cmds:
+      - "{{.PY}} -m docscanner.engine.export_models --runs {{.RUNS}} --out {{.MODELS}}"
+
+  eval:
+    desc: Produce every benchmark table into outputs/report/
+    deps: [export]
+    cmds:
+      - "{{.PY}} -m docscanner.eval.evaluate --runs {{.RUNS}} --all {{.CLI_ARGS}}"
+
+  eval:corners:
+    desc: Just the Section 5 corner comparison
+    cmds:
+      - "{{.PY}} -m docscanner.eval.evaluate --corners"
+
+  eval:enhance:
+    desc: Just the Section 3.3 PSNR/SSIM table
+    cmds:
+      - "{{.PY}} -m docscanner.eval.evaluate --enhancement"
+
+  eval:e2e:
+    desc: Just the bonus end-to-end chain
+    cmds:
+      - "{{.PY}} -m docscanner.eval.evaluate --end-to-end"
+
+  charts:
+    desc: One chart per measured question, each with its own caption
+    cmds:
+      - "{{.PY}} -m docscanner.eval.charts"
+
+  figures:
+    desc: Figures, galleries and the demo GIFs
+    cmds:
+      - "{{.PY}} -m docscanner.eval.figures --all"
+
+  stages:
+    desc: Per-stage input/output images with the accuracy each stage owns
+    summary: |
+      The one to reach for when a result looks wrong but the aggregate numbers
+      do not say why — it writes every stage of every photograph as its own
+      image, so a bad page can be attributed rather than guessed at.
+    cmds:
+      - "{{.PY}} -m docscanner.eval.stages {{.CLI_ARGS}}"
+
+  report:
+    desc: Regenerate docs/REPORT.md from the measured JSON
+    cmds:
+      - "{{.PY}} -m docscanner.eval.report"
+
+  regression:
+    desc: Fail if measured accuracy has regressed past its bound
+    summary: |
+      The check `pytest` cannot be. A unit test asks whether the code runs and
+      the geometry is right; this asks whether the scanner still finds the
+      page. A reordered augmentation or a new OpenCV point release can leave
+      every test green and double the median corner error.
+
+      Bounds live in scripts/regression_bounds.json and are ceilings, not
+      targets. Bank an improvement with `task regression:update`.
+    cmds:
+      - "{{.PY}} scripts/check_regression.py --markdown outputs/report/regression.md"
+
+  regression:update:
+    desc: Re-baseline the accuracy bounds from the current measurements
+    prompt: This replaces the recorded baselines with whatever was measured last. Continue?
+    cmds:
+      - "{{.PY}} scripts/check_regression.py --update"
+
+  refresh:
+    desc: Regenerate every derived artefact from the current checkpoints
+    summary: |
+      export → evaluate → charts → figures → stages → report → tests.
+      A failing step does not abort the rest, but does make the run exit
+      non-zero, so this is safe to put in CI.
+    cmds:
+      - "{{.PY}} -m docscanner.refresh --runs {{.RUNS}} {{.CLI_ARGS}}"
+
+  refresh:quick:
+    desc: Refresh without the GIFs or the test suite
+    cmds:
+      - "{{.PY}} -m docscanner.refresh --runs {{.RUNS}} --quick"
+
+  scan:
+    desc: 'End-to-end scan: task scan -- photo.jpg -o outputs/'
+    cmds:
+      - "{{.PY}} -m docscanner.pipeline.run scan {{.CLI_ARGS}}"
+
+  app:
+    desc: Launch the Gradio interface on :7860
+    cmds:
+      - "{{.PY}} -m docscanner.app.gradio_app"
+
+  label:
+    desc: Launch the corner-labelling tool on :7861 (§1.2)
+    cmds:
+      - "{{.PY}} -m docscanner.app.labeler --out data/real/own"
+
+  test:
+    desc: Run the test suite
+    cmds:
+      - "{{.PY}} -m pytest tests/ -q {{.CLI_ARGS}}"
+
+  test:cov:
+    desc: Run the suite with a coverage report
+    cmds:
+      - "{{.PY}} -m pytest tests/ -q --cov=docscanner --cov-report=term-missing --cov-report=html"
+      - cmd: echo "HTML report → htmlcov/index.html"
+        silent: true
+
+  lint:
+    desc: Lint (no writes)
+    summary: |
+      Deliberately not a formatting check. `ruff format` would split this
+      codebase's one-thought-per-line pairs and re-wrap the aligned tables in
+      the report generators — a large diff for nothing a reader would call an
+      improvement. Layout stays a choice; correctness does not.
+    cmds:
+      - "{{.PY}} -m ruff check src tests scripts *.py"
+
+  fmt:
+    desc: Apply the lint fixes that can be applied automatically
+    cmds:
+      - "{{.PY}} -m ruff check --fix src tests scripts *.py"
+
+  types:
+    desc: Type-check the package
+    cmds:
+      - "{{.PY}} -m mypy src/docscanner"
+
+  audit:
+    desc: Check dependencies for known vulnerabilities
+    cmds:
+      - "{{.PY}} -m pip install --quiet pip-audit"
+      - "{{.PY}} -m pip_audit --skip-editable"
+
+  verify:
+    desc: Everything CI runs — do this before you push
+    cmds:
+      - task: lint
+      - task: manifests
+      - task: docs-check
+      - task: test
+
+  docs-check:
+    desc: Documentation references resolve and generated docs match the JSONs
+    summary: |
+      The three documentation failures this project actually had — a reference
+      to a deleted image, REPORT/README tables drifting from the measured
+      outputs/report JSONs, and orphaned assets nothing mentions — plus the
+      hygiene check for tracked editor droppings and stray checkpoints.
+    cmds:
+      - "{{.PY}} scripts/check_docs.py"
+      - "{{.PY}} scripts/check_no_checkpoints.py"
+
+  docker:
+    desc: Build the CPU container image
+    sources: ["Dockerfile", "requirements.txt", "src/**/*.py", "pyproject.toml"]
+    cmds:
+      - docker build -t {{.IMAGE}} .
+
+  docker:gpu:
+    desc: Build the CUDA container image
+    cmds:
+      - docker build -f Dockerfile.gpu -t amazingscanner:gpu .
+
+  docker:run:
+    desc: Run the app in a container on :7860
+    deps: [docker]
+    cmds:
+      - docker run --rm -p 7860:7860 -v "$PWD/models:/app/models:ro" {{.IMAGE}}
+
+  docker:train:
+    desc: Run the full training schedule inside a GPU container
+    cmds:
+      - docker run --gpus all --rm -v "$PWD/runs:/app/runs" -v "$PWD/data:/app/data"
+        amazingscanner:gpu amazingscanner all --device cuda --amp {{.CLI_ARGS}}
+
+  compose:
+    desc: Bring the stack up with docker compose
+    cmds:
+      - docker compose up -d --build
+
+  compose:down:
+    desc: Tear the stack down
+    cmds:
+      - docker compose down -v
+
+  screenshots:
+    desc: Re-capture the interface screenshots, with real results in them
+    summary: |
+      Drives every tab of the running app with a real input, waits for the
+      outputs to arrive, and saves the finished state to docs/assets/. Start
+      the app first (`task app`, or `amazingscanner app`) — this drives a
+      browser against :7860, it does not launch one.
+
+      Doubles as a functional check of the interface: --check exits non-zero
+      if any tab's button produces no output.
+    cmds:
+      - "{{.PY}} scripts/capture_app_results.py --check"
+
+  manifests:
+    desc: Validate every deployment manifest without applying anything
+    summary: |
+      Parses the Kubernetes YAML, renders the Helm chart, checks Terraform
+      formatting and validates the Ansible playbook — whichever of those tools
+      happen to be installed. Missing tools are reported and skipped, not
+      treated as failures, so this is useful on a laptop and in CI alike.
+    cmds:
+      - "{{.PY}} scripts/validate_manifests.py"
+
+  k8s:
+    desc: Apply the Kubernetes manifests
+    preconditions:
+      - sh: command -v kubectl
+        msg: "kubectl is not installed"
+    cmds:
+      - kubectl apply -f deploy/k8s/
+
+  k8s:train:
+    desc: Run training as a Kubernetes Job and follow the logs
+    cmds:
+      - kubectl apply -f deploy/k8s/job-train.yaml
+      - kubectl wait --for=condition=ready pod -l app.kubernetes.io/component=training --timeout=300s
+      - kubectl logs -f job/docscanner-train
+
+  helm:
+    desc: Install the Helm chart into the current context
+    preconditions:
+      - sh: command -v helm
+        msg: "helm is not installed"
+    cmds:
+      - helm upgrade --install amazingscanner deploy/helm {{.CLI_ARGS}}
+
+  tofu:
+    desc: Plan the OpenTofu/Terraform stack (never applies)
+    dir: deploy/terraform
+    cmds:
+      - "{{if eq (env \"TF\") \"terraform\"}}terraform{{else}}tofu{{end}} init -backend=false"
+      - "{{if eq (env \"TF\") \"terraform\"}}terraform{{else}}tofu{{end}} plan"
+
+  ansible:
+    desc: Run the Ansible playbook against deploy/ansible/inventory.ini
+    cmds:
+      - ansible-playbook -i deploy/ansible/inventory.ini deploy/ansible/playbook.yml {{.CLI_ARGS}}
+
+  vagrant:
+    desc: Bring up the Vagrant box (a full local rehearsal of the Ansible run)
+    dir: deploy/vagrant
+    cmds:
+      - vagrant up
+
+  clean:
+    desc: Remove generated outputs (keeps data/, runs/ and models/)
+    cmds:
+      - rm -rf outputs htmlcov .coverage .pytest_cache .ruff_cache .mypy_cache
+      - find . -name __pycache__ -type d -prune -exec rm -rf {} + 2>/dev/null || true
+
+  clean:all:
+    desc: Also remove the datasets and every training run — destructive
+    prompt: This deletes data/, runs/ and models/. Continue?
+    cmds:
+      - task: clean
+      - rm -rf data runs models
+
+  bundle:
+    desc: Zip the trained weights and every regenerated artefact for download
+    cmds:
+      - >-
+        zip -qr amazingscanner_trained.zip
+        models docs/REPORT.md docs/CHARTS.md docs/assets outputs/report
+        -x "*.pyc"
+      - cmd: echo "→ amazingscanner_trained.zip"
+        silent: true
