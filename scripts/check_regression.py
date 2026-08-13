@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""Check evaluation outputs against stored regression bounds."""
+
 from __future__ import annotations
 
 import argparse
@@ -91,7 +93,9 @@ def _markdown(measured: dict[str, float], baseline: dict[str, float],
 
 
 def main(argv: list[str] | None = None) -> int:
-    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap = argparse.ArgumentParser(
+        description=(__doc__ or "Check evaluation outputs against regression bounds.").splitlines()[0]
+    )
     ap.add_argument("--report", type=Path, default=Path("outputs/report"),
                     help="directory holding the evaluation JSON")
     ap.add_argument("--tolerance", type=float, default=DEFAULT_TOLERANCE,
