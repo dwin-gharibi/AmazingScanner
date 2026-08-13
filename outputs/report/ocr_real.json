@@ -1,0 +1,256 @@
+{
+ "rows": [
+  {
+   "Image": "rectified input",
+   "n": 25,
+   "OCR confidence": 60.628942023416705,
+   "words read": 90.48
+  },
+  {
+   "Image": "ours",
+   "n": 25,
+   "OCR confidence": 67.28540247880713,
+   "words read": 116.0
+  },
+  {
+   "Image": "commercial reference",
+   "n": 25,
+   "OCR confidence": 74.21528404672497,
+   "words read": 155.8
+  }
+ ],
+ "per_image": [
+  {
+   "image": "img1.jpg",
+   "rectified input conf": 57.94736842105263,
+   "rectified input words": 114.0,
+   "ours conf": 59.45454545454545,
+   "ours words": 132.0,
+   "commercial reference conf": 72.7844522968198,
+   "commercial reference words": 283.0
+  },
+  {
+   "image": "img2.jpg",
+   "rectified input conf": 72.27272727272727,
+   "rectified input words": 132.0,
+   "ours conf": 69.84285714285714,
+   "ours words": 140.0,
+   "commercial reference conf": 72.0728476821192,
+   "commercial reference words": 151.0
+  },
+  {
+   "image": "img3.jpg",
+   "rectified input conf": 76.1086956521739,
+   "rectified input words": 46.0,
+   "ours conf": 73.38461538461539,
+   "ours words": 52.0,
+   "commercial reference conf": 91.32352941176471,
+   "commercial reference words": 68.0
+  },
+  {
+   "image": "img4.jpg",
+   "rectified input conf": 82.046875,
+   "rectified input words": 64.0,
+   "ours conf": 79.41891891891892,
+   "ours words": 148.0,
+   "commercial reference conf": 91.88888888888889,
+   "commercial reference words": 90.0
+  },
+  {
+   "image": "img5.jpg",
+   "rectified input conf": 89.85561497326204,
+   "rectified input words": 187.0,
+   "ours conf": 88.09677419354838,
+   "ours words": 217.0,
+   "commercial reference conf": 93.76603773584905,
+   "commercial reference words": 265.0
+  },
+  {
+   "image": "img6.jpg",
+   "rectified input conf": 68.34939759036145,
+   "rectified input words": 83.0,
+   "ours conf": 74.16842105263157,
+   "ours words": 95.0,
+   "commercial reference conf": 87.45890410958904,
+   "commercial reference words": 146.0
+  },
+  {
+   "image": "img7.jpg",
+   "rectified input conf": 0.0,
+   "rectified input words": 0.0,
+   "ours conf": 61.61764705882353,
+   "ours words": 34.0,
+   "commercial reference conf": 64.36842105263158,
+   "commercial reference words": 57.0
+  },
+  {
+   "image": "img8.jpg",
+   "rectified input conf": 80.4873949579832,
+   "rectified input words": 119.0,
+   "ours conf": 82.63636363636364,
+   "ours words": 165.0,
+   "commercial reference conf": 92.30875576036867,
+   "commercial reference words": 217.0
+  },
+  {
+   "image": "img9.jpg",
+   "rectified input conf": 69.77049180327869,
+   "rectified input words": 183.0,
+   "ours conf": 71.58673469387755,
+   "ours words": 196.0,
+   "commercial reference conf": 85.51351351351352,
+   "commercial reference words": 333.0
+  },
+  {
+   "image": "img10.jpg",
+   "rectified input conf": 52.0,
+   "rectified input words": 1.0,
+   "ours conf": 54.16417910447761,
+   "ours words": 67.0,
+   "commercial reference conf": 74.97422680412372,
+   "commercial reference words": 194.0
+  },
+  {
+   "image": "img11.jpg",
+   "rectified input conf": 57.53333333333333,
+   "rectified input words": 15.0,
+   "ours conf": 52.65432098765432,
+   "ours words": 81.0,
+   "commercial reference conf": 54.276923076923076,
+   "commercial reference words": 65.0
+  },
+  {
+   "image": "img14.jpg",
+   "rectified input conf": 52.62,
+   "rectified input words": 50.0,
+   "ours conf": 57.44,
+   "ours words": 50.0,
+   "commercial reference conf": 54.377049180327866,
+   "commercial reference words": 61.0
+  },
+  {
+   "image": "img15.jpg",
+   "rectified input conf": 0.0,
+   "rectified input words": 0.0,
+   "ours conf": 60.53333333333333,
+   "ours words": 45.0,
+   "commercial reference conf": 55.22222222222222,
+   "commercial reference words": 54.0
+  },
+  {
+   "image": "img17.jpg",
+   "rectified input conf": 51.5,
+   "rectified input words": 4.0,
+   "ours conf": 57.46153846153846,
+   "ours words": 13.0,
+   "commercial reference conf": 77.25,
+   "commercial reference words": 4.0
+  },
+  {
+   "image": "img18.jpg",
+   "rectified input conf": 53.0,
+   "rectified input words": 5.0,
+   "ours conf": 59.285714285714285,
+   "ours words": 14.0,
+   "commercial reference conf": 61.64705882352941,
+   "commercial reference words": 17.0
+  },
+  {
+   "image": "img19.jpg",
+   "rectified input conf": 55.333333333333336,
+   "rectified input words": 12.0,
+   "ours conf": 59.43333333333333,
+   "ours words": 30.0,
+   "commercial reference conf": 63.294117647058826,
+   "commercial reference words": 17.0
+  },
+  {
+   "image": "img20.jpg",
+   "rectified input conf": 53.592592592592595,
+   "rectified input words": 54.0,
+   "ours conf": 57.62637362637363,
+   "ours words": 91.0,
+   "commercial reference conf": 55.24731182795699,
+   "commercial reference words": 93.0
+  },
+  {
+   "image": "img21.jpg",
+   "rectified input conf": 53.714285714285715,
+   "rectified input words": 14.0,
+   "ours conf": 61.725806451612904,
+   "ours words": 124.0,
+   "commercial reference conf": 66.5909090909091,
+   "commercial reference words": 198.0
+  },
+  {
+   "image": "img22.jpg",
+   "rectified input conf": 56.75,
+   "rectified input words": 4.0,
+   "ours conf": 70.5,
+   "ours words": 4.0,
+   "commercial reference conf": 62.23529411764706,
+   "commercial reference words": 17.0
+  },
+  {
+   "image": "img23.jpg",
+   "rectified input conf": 58.625,
+   "rectified input words": 16.0,
+   "ours conf": 64.0,
+   "ours words": 32.0,
+   "commercial reference conf": 65.42857142857143,
+   "commercial reference words": 14.0
+  },
+  {
+   "image": "img24.jpg",
+   "rectified input conf": 68.33333333333333,
+   "rectified input words": 3.0,
+   "ours conf": 60.5,
+   "ours words": 6.0,
+   "commercial reference conf": 59.08695652173913,
+   "commercial reference words": 23.0
+  },
+  {
+   "image": "img25.jpg",
+   "rectified input conf": 67.79910714285714,
+   "rectified input words": 224.0,
+   "ours conf": 68.84444444444445,
+   "ours words": 225.0,
+   "commercial reference conf": 85.48732394366198,
+   "commercial reference words": 355.0
+  },
+  {
+   "image": "img26.jpg",
+   "rectified input conf": 74.22715404699738,
+   "rectified input words": 383.0,
+   "ours conf": 73.84109589041095,
+   "ours words": 365.0,
+   "commercial reference conf": 79.88558352402745,
+   "commercial reference words": 437.0
+  },
+  {
+   "image": "img27.jpg",
+   "rectified input conf": 78.96113989637306,
+   "rectified input words": 386.0,
+   "ours conf": 73.96216216216216,
+   "ours words": 370.0,
+   "commercial reference conf": 94.67760617760618,
+   "commercial reference words": 518.0
+  },
+  {
+   "image": "img28.jpg",
+   "rectified input conf": 84.8957055214724,
+   "rectified input words": 163.0,
+   "ours conf": 89.95588235294117,
+   "ours words": 204.0,
+   "commercial reference conf": 94.21559633027523,
+   "commercial reference words": 218.0
+  }
+ ],
+ "verdict": {
+  "pages where ours beats the raw input (words)": 21,
+  "pages where ours matches or beats the app (words)": 5,
+  "pages where ours matches or beats the app (confidence)": 5,
+  "n": 25
+ },
+ "seconds": 135.6
+}

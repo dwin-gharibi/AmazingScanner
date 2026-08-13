@@ -1,0 +1,61 @@
+{
+ "rows": [
+  {
+   "Run": "degraded input (no model)",
+   "n": 24,
+   "PSNR": 12.334915274595241,
+   "SSIM": 0.711012177169323,
+   "seconds/page": 0.12015698353449504
+  },
+  {
+   "Run": "flagship (full budget)",
+   "loss": "combined",
+   "bg prior": false,
+   "dropout": 0.0,
+   "n": 24,
+   "PSNR": 21.164040698044218,
+   "SSIM": 0.8092334332565466,
+   "seconds/page": 1.0158205032348633
+  },
+  {
+   "Run": "control (combined loss, no dropout)",
+   "loss": "combined",
+   "bg prior": true,
+   "dropout": 0.0,
+   "n": 24,
+   "PSNR": 19.13851254414215,
+   "SSIM": 0.7862607457985481,
+   "seconds/page": 1.0597717463970184
+  },
+  {
+   "Run": "+ dropout 0.15 (Section 6)",
+   "loss": "combined",
+   "bg prior": true,
+   "dropout": 0.15,
+   "n": 24,
+   "PSNR": 19.455807892158735,
+   "SSIM": 0.7905726109941801,
+   "seconds/page": 1.0736496845881145
+  },
+  {
+   "Run": "loss: MSE",
+   "loss": "mse",
+   "bg prior": true,
+   "dropout": 0.0,
+   "n": 24,
+   "PSNR": 16.53707196413816,
+   "SSIM": 0.7080659673859676,
+   "seconds/page": 0.9831433196862539
+  },
+  {
+   "Run": "loss: L1",
+   "loss": "l1",
+   "bg prior": true,
+   "dropout": 0.0,
+   "n": 24,
+   "PSNR": 15.850960093740804,
+   "SSIM": 0.7014241156478723,
+   "seconds/page": 0.9974556465943655
+  }
+ ]
+}

@@ -1,0 +1,1137 @@
+{
+ "pack": "./pack_large",
+ "count": 120,
+ "seconds": 392.4,
+ "rows": [
+  {
+   "Style": "clean",
+   "n": 40,
+   "corner err (% diag)": 1.5365565799187733,
+   "median (% diag)": 0.5000408935965694,
+   "success@2%": 95.0,
+   "success@4%": 95.0,
+   "quad IoU": 0.958033120661734,
+   "PSNR": 19.61126412861674,
+   "SSIM": 0.8568299680948257,
+   "detected by network": "40/40"
+  },
+  {
+   "Style": "corner-hard",
+   "n": 40,
+   "corner err (% diag)": 1.687676206513944,
+   "median (% diag)": 0.6829865070171142,
+   "success@2%": 82.5,
+   "success@4%": 92.5,
+   "quad IoU": 0.9388949725755333,
+   "PSNR": 13.868479466064795,
+   "SSIM": 0.6158811241388321,
+   "detected by network": "40/40"
+  },
+  {
+   "Style": "ood",
+   "n": 40,
+   "corner err (% diag)": 2.0353003575407973,
+   "median (% diag)": 0.6266859803150674,
+   "success@2%": 77.5,
+   "success@4%": 82.5,
+   "quad IoU": 0.917392415885028,
+   "PSNR": 17.040553040465632,
+   "SSIM": 0.6847918547689915,
+   "detected by network": "40/40"
+  },
+  {
+   "Style": "ALL",
+   "n": 120,
+   "corner err (% diag)": 1.7531777146578382,
+   "median (% diag)": 0.6001141532187426,
+   "success@2%": 85.0,
+   "success@4%": 90.0,
+   "quad IoU": 0.9381068363740984,
+   "PSNR": 16.84009887838239,
+   "SSIM": 0.7191676490008831,
+   "detected by network": "120/120"
+  }
+ ],
+ "items": [
+  {
+   "file": "photos/pack_00_clean.jpg",
+   "style": "clean",
+   "err_pct": 1.4567372032561345,
+   "iou": 0.9413130437215027,
+   "psnr": 20.593144183511992,
+   "ssim": 0.933292806148529,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_01_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 1.4028044030122784,
+   "iou": 0.9830845771144279,
+   "psnr": 15.89949217161929,
+   "ssim": 0.6957855224609375,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_02_ood.jpg",
+   "style": "ood",
+   "err_pct": 0.3021770128171331,
+   "iou": 0.9841808300737305,
+   "psnr": 13.494668253187703,
+   "ssim": 0.49285778403282166,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_03_clean.jpg",
+   "style": "clean",
+   "err_pct": 0.36350792421089884,
+   "iou": 0.9844598445984459,
+   "psnr": 19.552683570676713,
+   "ssim": 0.834612250328064,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_04_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 0.44052730922407485,
+   "iou": 0.9829230428032824,
+   "psnr": 8.462008546265245,
+   "ssim": 0.6211912035942078,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_05_ood.jpg",
+   "style": "ood",
+   "err_pct": 0.30520012209983294,
+   "iou": 0.9943203154337213,
+   "psnr": 15.355201237034542,
+   "ssim": 0.5462319254875183,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_06_clean.jpg",
+   "style": "clean",
+   "err_pct": 0.4951864013827634,
+   "iou": 0.9820782470496737,
+   "psnr": 19.375859311722955,
+   "ssim": 0.9120926856994629,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_07_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 0.4167926772411051,
+   "iou": 0.9785030906728611,
+   "psnr": 15.325734887971246,
+   "ssim": 0.5198677182197571,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_08_ood.jpg",
+   "style": "ood",
+   "err_pct": 7.0971007638220795,
+   "iou": 0.469944898981466,
+   "psnr": 14.537200469095444,
+   "ssim": 0.7234448194503784,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_09_clean.jpg",
+   "style": "clean",
+   "err_pct": 0.29296405639749684,
+   "iou": 0.9888957433682912,
+   "psnr": 18.568895449137386,
+   "ssim": 0.8647122383117676,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_10_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 3.598614780746121,
+   "iou": 0.7450582327171706,
+   "psnr": 13.59127910535041,
+   "ssim": 0.8101177215576172,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_11_ood.jpg",
+   "style": "ood",
+   "err_pct": 3.463524216031221,
+   "iou": 0.8467203682393556,
+   "psnr": 17.91032099828242,
+   "ssim": 0.6846044659614563,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_12_clean.jpg",
+   "style": "clean",
+   "err_pct": 0.6837802653312149,
+   "iou": 0.9826654610413956,
+   "psnr": 22.726626034368586,
+   "ssim": 0.9385581016540527,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_13_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 0.5426079042646771,
+   "iou": 0.9715047725996631,
+   "psnr": 23.308499030705004,
+   "ssim": 0.7981007695198059,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_14_ood.jpg",
+   "style": "ood",
+   "err_pct": 9.96822360097921,
+   "iou": 0.7183911705401677,
+   "psnr": 16.298498703874074,
+   "ssim": 0.6637969613075256,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_15_clean.jpg",
+   "style": "clean",
+   "err_pct": 0.30457162187575426,
+   "iou": 0.9870703501445551,
+   "psnr": 17.7104725918499,
+   "ssim": 0.8226316571235657,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_16_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 0.7190285685812952,
+   "iou": 0.9523975386044351,
+   "psnr": 14.13480877748617,
+   "ssim": 0.3855800926685333,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_17_ood.jpg",
+   "style": "ood",
+   "err_pct": 0.2836458626790414,
+   "iou": 0.9812341318026272,
+   "psnr": 17.835220195041906,
+   "ssim": 0.4586845636367798,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_18_clean.jpg",
+   "style": "clean",
+   "err_pct": 0.5938676176781098,
+   "iou": 0.9840220520076108,
+   "psnr": 20.77030338278628,
+   "ssim": 0.8892008066177368,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_19_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 0.5085058617237225,
+   "iou": 0.9672485932765834,
+   "psnr": 15.447419839851879,
+   "ssim": 0.643720805644989,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_20_ood.jpg",
+   "style": "ood",
+   "err_pct": 0.5422787919354143,
+   "iou": 0.9798254515932616,
+   "psnr": 19.93872508605501,
+   "ssim": 0.9192915558815002,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_21_clean.jpg",
+   "style": "clean",
+   "err_pct": 1.5743231586278235,
+   "iou": 0.926741341573323,
+   "psnr": 18.646967616444158,
+   "ssim": 0.7452566027641296,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_22_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 0.6257823642497371,
+   "iou": 0.9511196212967395,
+   "psnr": 15.831758565121435,
+   "ssim": 0.4585997462272644,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_23_ood.jpg",
+   "style": "ood",
+   "err_pct": 5.6430523457037065,
+   "iou": 0.9226516863991405,
+   "psnr": 15.342858777517378,
+   "ssim": 0.637104332447052,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_24_clean.jpg",
+   "style": "clean",
+   "err_pct": 1.0412085552769201,
+   "iou": 0.9828896805138706,
+   "psnr": 17.858322364297294,
+   "ssim": 0.7668843269348145,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_25_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 0.4935206653856279,
+   "iou": 0.981159420289855,
+   "psnr": 12.196342347775746,
+   "ssim": 0.8402078151702881,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_26_ood.jpg",
+   "style": "ood",
+   "err_pct": 0.45327671184795215,
+   "iou": 0.9665182186234818,
+   "psnr": 17.69923944430098,
+   "ssim": 0.771123468875885,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_27_clean.jpg",
+   "style": "clean",
+   "err_pct": 0.43815534583336047,
+   "iou": 0.9865803835028181,
+   "psnr": 21.821655167376797,
+   "ssim": 0.9492157697677612,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_28_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 0.362963391958835,
+   "iou": 0.9908441116405718,
+   "psnr": 14.117771418919727,
+   "ssim": 0.17558501660823822,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_29_ood.jpg",
+   "style": "ood",
+   "err_pct": 0.6317520880078202,
+   "iou": 0.9812454063917683,
+   "psnr": 19.18555992705477,
+   "ssim": 0.7533414959907532,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_30_clean.jpg",
+   "style": "clean",
+   "err_pct": 0.5010495240908602,
+   "iou": 0.980708876795946,
+   "psnr": 20.581469650269696,
+   "ssim": 0.9061166644096375,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_31_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 0.5422270634355414,
+   "iou": 0.968202986992131,
+   "psnr": 19.640155735566136,
+   "ssim": 0.8573195934295654,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_32_ood.jpg",
+   "style": "ood",
+   "err_pct": 15.96036705403288,
+   "iou": 0.41403193554930884,
+   "psnr": 12.375094157406084,
+   "ssim": 0.769785463809967,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_33_clean.jpg",
+   "style": "clean",
+   "err_pct": 28.53262261594785,
+   "iou": 0.4886392062036188,
+   "psnr": 11.931995395210519,
+   "ssim": 0.6757586002349854,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_34_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 0.8555671588054724,
+   "iou": 0.962600150225338,
+   "psnr": 11.618518603912376,
+   "ssim": 0.422390341758728,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_35_ood.jpg",
+   "style": "ood",
+   "err_pct": 0.5180349994303115,
+   "iou": 0.9802446652678253,
+   "psnr": 17.981045973136496,
+   "ssim": 0.738978922367096,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_36_clean.jpg",
+   "style": "clean",
+   "err_pct": 0.6121237476849007,
+   "iou": 0.9900326599733882,
+   "psnr": 22.04194987254087,
+   "ssim": 0.9016098976135254,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_37_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 0.374530371301921,
+   "iou": 0.9801260818463511,
+   "psnr": 12.266973910558507,
+   "ssim": 0.7069552540779114,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_38_ood.jpg",
+   "style": "ood",
+   "err_pct": 1.9813985001926433,
+   "iou": 0.8459524963645177,
+   "psnr": 17.542830342055257,
+   "ssim": 0.7206214666366577,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_39_clean.jpg",
+   "style": "clean",
+   "err_pct": 1.6439283922674142,
+   "iou": 0.9312812248186946,
+   "psnr": 18.202433848461112,
+   "ssim": 0.6227943301200867,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_40_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 0.4111833149685984,
+   "iou": 0.977731575203808,
+   "psnr": 18.195529989611,
+   "ssim": 0.5773093104362488,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_41_ood.jpg",
+   "style": "ood",
+   "err_pct": 4.002249313830414,
+   "iou": 0.9182919942661049,
+   "psnr": 16.678987758231084,
+   "ssim": 0.5932057499885559,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_42_clean.jpg",
+   "style": "clean",
+   "err_pct": 0.41962184053160667,
+   "iou": 0.976975797815378,
+   "psnr": 20.10134359435359,
+   "ssim": 0.8478695154190063,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_43_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 0.46153374278628395,
+   "iou": 0.9777933613838242,
+   "psnr": 23.2953042785684,
+   "ssim": 0.8712799549102783,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_44_ood.jpg",
+   "style": "ood",
+   "err_pct": 0.2533686868581628,
+   "iou": 0.9824484422992541,
+   "psnr": 19.723645642989897,
+   "ssim": 0.7927641868591309,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_45_clean.jpg",
+   "style": "clean",
+   "err_pct": 0.8205024221030989,
+   "iou": 0.9786637875633017,
+   "psnr": 20.54696530184875,
+   "ssim": 0.9204059839248657,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_46_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 0.6469444454529332,
+   "iou": 0.982181501363087,
+   "psnr": 12.592270082288156,
+   "ssim": 0.29437965154647827,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_47_ood.jpg",
+   "style": "ood",
+   "err_pct": 6.795531894685265,
+   "iou": 0.5939613925094869,
+   "psnr": 16.244769818642347,
+   "ssim": 0.6571493744850159,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_48_clean.jpg",
+   "style": "clean",
+   "err_pct": 0.4138222272282783,
+   "iou": 0.9783222708656969,
+   "psnr": 21.031307140622527,
+   "ssim": 0.9325267672538757,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_49_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 1.0761161294246644,
+   "iou": 0.9405814828754234,
+   "psnr": 8.577283852595377,
+   "ssim": 0.6821445822715759,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_50_ood.jpg",
+   "style": "ood",
+   "err_pct": 2.2000828815958355,
+   "iou": 0.9352060693049006,
+   "psnr": 19.001251786425897,
+   "ssim": 0.8232399225234985,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_51_clean.jpg",
+   "style": "clean",
+   "err_pct": 0.3462118314440987,
+   "iou": 0.986488060570763,
+   "psnr": 20.425964371791668,
+   "ssim": 0.8766058087348938,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_52_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 1.0974053556534251,
+   "iou": 0.925053119567317,
+   "psnr": 11.73598354266204,
+   "ssim": 0.42157527804374695,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_53_ood.jpg",
+   "style": "ood",
+   "err_pct": 0.28488055036320825,
+   "iou": 0.9885770481882139,
+   "psnr": 16.104619425240806,
+   "ssim": 0.6533564329147339,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_54_clean.jpg",
+   "style": "clean",
+   "err_pct": 0.2960658308135238,
+   "iou": 0.9878040305767894,
+   "psnr": 19.25433389295106,
+   "ssim": 0.745708703994751,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_55_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 0.13908322034606072,
+   "iou": 0.9948663747546429,
+   "psnr": 3.674357174531277,
+   "ssim": 0.19092632830142975,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_56_ood.jpg",
+   "style": "ood",
+   "err_pct": 0.5090672117150012,
+   "iou": 0.9719152854511971,
+   "psnr": 12.028805724741867,
+   "ssim": 0.276732474565506,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_57_clean.jpg",
+   "style": "clean",
+   "err_pct": 0.36377248493561226,
+   "iou": 0.9855040511492036,
+   "psnr": 19.535805574559667,
+   "ssim": 0.9310726523399353,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_58_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 1.5375380095526099,
+   "iou": 0.9461757560526095,
+   "psnr": 15.869573483335742,
+   "ssim": 0.6491056680679321,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_59_ood.jpg",
+   "style": "ood",
+   "err_pct": 0.2256788683290938,
+   "iou": 0.9889792231255646,
+   "psnr": 18.87397121898995,
+   "ssim": 0.8032402992248535,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_60_clean.jpg",
+   "style": "clean",
+   "err_pct": 0.3979817654988803,
+   "iou": 0.988904175140567,
+   "psnr": 21.158517815037104,
+   "ssim": 0.8970359563827515,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_61_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 0.4477731136255351,
+   "iou": 0.9641554177307552,
+   "psnr": 14.41634022118013,
+   "ssim": 0.711795449256897,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_62_ood.jpg",
+   "style": "ood",
+   "err_pct": 1.1087402837370826,
+   "iou": 0.9633637053910402,
+   "psnr": 21.117616083797813,
+   "ssim": 0.7678021788597107,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_63_clean.jpg",
+   "style": "clean",
+   "err_pct": 0.5255605527950923,
+   "iou": 0.9804653275789337,
+   "psnr": 18.667323724949043,
+   "ssim": 0.8220522999763489,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_64_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 0.5697652946528848,
+   "iou": 0.9914121317951508,
+   "psnr": 19.533874540234706,
+   "ssim": 0.8480198979377747,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_65_ood.jpg",
+   "style": "ood",
+   "err_pct": 0.1973423184038406,
+   "iou": 0.9947423188564544,
+   "psnr": 20.3659248568539,
+   "ssim": 0.780388593673706,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_66_clean.jpg",
+   "style": "clean",
+   "err_pct": 0.6055257020150971,
+   "iou": 0.976944271158245,
+   "psnr": 21.041460675456392,
+   "ssim": 0.9252079725265503,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_67_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 4.857406981095352,
+   "iou": 0.8576140985088115,
+   "psnr": 14.834857416876158,
+   "ssim": 0.6560153365135193,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_68_ood.jpg",
+   "style": "ood",
+   "err_pct": 0.7608785999450861,
+   "iou": 0.9852446028916617,
+   "psnr": 17.765230792660308,
+   "ssim": 0.6851530075073242,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_69_clean.jpg",
+   "style": "clean",
+   "err_pct": 1.2467954490569568,
+   "iou": 0.9653147239687694,
+   "psnr": 15.61622992599174,
+   "ssim": 0.8142786622047424,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_70_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 0.3679958631164664,
+   "iou": 0.9830450335669133,
+   "psnr": 16.59347605252185,
+   "ssim": 0.6991236805915833,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_71_ood.jpg",
+   "style": "ood",
+   "err_pct": 1.0025020555431692,
+   "iou": 0.9574901361842942,
+   "psnr": 18.61622476652076,
+   "ssim": 0.7688109874725342,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_72_clean.jpg",
+   "style": "clean",
+   "err_pct": 0.3333050789770634,
+   "iou": 0.9881987907075421,
+   "psnr": 19.181132131188285,
+   "ssim": 0.8147600889205933,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_73_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 0.572820269883012,
+   "iou": 0.9629490666916799,
+   "psnr": 22.00532927630539,
+   "ssim": 0.7609213590621948,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_74_ood.jpg",
+   "style": "ood",
+   "err_pct": 0.4170344238651568,
+   "iou": 0.9888425087290961,
+   "psnr": 14.802412524866595,
+   "ssim": 0.5205374956130981,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_75_clean.jpg",
+   "style": "clean",
+   "err_pct": 0.4990322631022786,
+   "iou": 0.9852372405773655,
+   "psnr": 20.735696237160845,
+   "ssim": 0.9012491106987,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_76_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 0.41264861082346344,
+   "iou": 0.9834803486612036,
+   "psnr": 4.879169010382348,
+   "ssim": 0.3860623836517334,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_77_ood.jpg",
+   "style": "ood",
+   "err_pct": 1.070655880313971,
+   "iou": 0.9653476669716377,
+   "psnr": 19.51356970999761,
+   "ssim": 0.7399956583976746,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_78_clean.jpg",
+   "style": "clean",
+   "err_pct": 0.3463263981533136,
+   "iou": 0.9797878495660559,
+   "psnr": 18.95449075194471,
+   "ssim": 0.7648813128471375,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_79_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 20.19526293850868,
+   "iou": 0.5023041474654378,
+   "psnr": 10.279460689406273,
+   "ssim": 0.8169642090797424,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_80_ood.jpg",
+   "style": "ood",
+   "err_pct": 0.38628896425908027,
+   "iou": 0.9762108088324997,
+   "psnr": 16.303687878505208,
+   "ssim": 0.7175957560539246,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_81_clean.jpg",
+   "style": "clean",
+   "err_pct": 0.48524758158306014,
+   "iou": 0.9752813812984942,
+   "psnr": 18.95055463700748,
+   "ssim": 0.8438314199447632,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_82_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 0.9702048496511304,
+   "iou": 0.9682406401264447,
+   "psnr": 5.177519330760177,
+   "ssim": 0.4248647689819336,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_83_ood.jpg",
+   "style": "ood",
+   "err_pct": 0.9929934786387783,
+   "iou": 0.9565465294241214,
+   "psnr": 16.516117605637895,
+   "ssim": 0.8208715319633484,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_84_clean.jpg",
+   "style": "clean",
+   "err_pct": 0.7905639339300722,
+   "iou": 0.9791277535651813,
+   "psnr": 17.233503079748665,
+   "ssim": 0.7528426051139832,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_85_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 2.0568199246549943,
+   "iou": 0.8662893526706756,
+   "psnr": 8.18207179109234,
+   "ssim": 0.6482778191566467,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_86_ood.jpg",
+   "style": "ood",
+   "err_pct": 0.8764779918183755,
+   "iou": 0.9783333333333334,
+   "psnr": 14.29082630179073,
+   "ssim": 0.6066871881484985,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_87_clean.jpg",
+   "style": "clean",
+   "err_pct": 0.39065573365268363,
+   "iou": 0.9701622971285893,
+   "psnr": 20.138712494228734,
+   "ssim": 0.9495667219161987,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_88_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 0.5248389579636321,
+   "iou": 0.9654088050314465,
+   "psnr": 6.0549170440616535,
+   "ssim": 0.19558900594711304,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_89_ood.jpg",
+   "style": "ood",
+   "err_pct": 0.46075979508504206,
+   "iou": 0.9801609794807845,
+   "psnr": 18.510423132727322,
+   "ssim": 0.815993070602417,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_90_clean.jpg",
+   "style": "clean",
+   "err_pct": 0.26142587011032636,
+   "iou": 0.9851080093995074,
+   "psnr": 21.832587099267474,
+   "ssim": 0.8897297978401184,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_91_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 5.147729245796216,
+   "iou": 0.8297045101088647,
+   "psnr": 17.98535749353144,
+   "ssim": 0.8235780000686646,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_92_ood.jpg",
+   "style": "ood",
+   "err_pct": 0.5947026044223881,
+   "iou": 0.972753151687678,
+   "psnr": 17.561661769737714,
+   "ssim": 0.8156663179397583,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_93_clean.jpg",
+   "style": "clean",
+   "err_pct": 0.42153271220490096,
+   "iou": 0.9819201995012469,
+   "psnr": 25.422175102324104,
+   "ssim": 0.9613204002380371,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_94_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 1.7865881872312452,
+   "iou": 0.9170866525768168,
+   "psnr": 14.871485541209964,
+   "ssim": 0.4564386010169983,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_95_ood.jpg",
+   "style": "ood",
+   "err_pct": 0.3648374004037268,
+   "iou": 0.9894188208794951,
+   "psnr": 15.917461106872153,
+   "ssim": 0.43873441219329834,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_96_clean.jpg",
+   "style": "clean",
+   "err_pct": 1.219521304016287,
+   "iou": 0.9908683601017579,
+   "psnr": 17.22669191009068,
+   "ssim": 0.7325031757354736,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_97_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 0.7461563202201028,
+   "iou": 0.9344065353195579,
+   "psnr": 19.050568753678967,
+   "ssim": 0.6628707647323608,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_98_ood.jpg",
+   "style": "ood",
+   "err_pct": 0.23672571076336602,
+   "iou": 0.9884655113049466,
+   "psnr": 18.198553234896035,
+   "ssim": 0.6052452325820923,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_99_clean.jpg",
+   "style": "clean",
+   "err_pct": 7.283671658134986,
+   "iou": 0.6967937961997188,
+   "psnr": 16.889714604886777,
+   "ssim": 0.6968787908554077,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_100_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 3.4486262793750453,
+   "iou": 0.916690888764673,
+   "psnr": 14.081904327476437,
+   "ssim": 0.7746683955192566,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_101_ood.jpg",
+   "style": "ood",
+   "err_pct": 1.2617859458201066,
+   "iou": 0.9636819321029847,
+   "psnr": 13.808398971710396,
+   "ssim": 0.49444326758384705,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_102_clean.jpg",
+   "style": "clean",
+   "err_pct": 0.21450982846567193,
+   "iou": 0.9933301572177228,
+   "psnr": 20.542994756424807,
+   "ssim": 0.915688693523407,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_103_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 0.39652458640156457,
+   "iou": 0.9748040059817827,
+   "psnr": 4.831249676843006,
+   "ssim": 0.5359162092208862,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_104_ood.jpg",
+   "style": "ood",
+   "err_pct": 0.3725864745089343,
+   "iou": 0.9821401543817163,
+   "psnr": 13.878424627887602,
+   "ssim": 0.5863187313079834,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_105_clean.jpg",
+   "style": "clean",
+   "err_pct": 0.42629209710238924,
+   "iou": 0.987296377340141,
+   "psnr": 20.331148516243328,
+   "ssim": 0.9332566261291504,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_106_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 3.3736577566670096,
+   "iou": 0.9829298572315333,
+   "psnr": 20.27366444496699,
+   "ssim": 0.8664901852607727,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_107_ood.jpg",
+   "style": "ood",
+   "err_pct": 0.6216198726223146,
+   "iou": 0.9739227506139764,
+   "psnr": 18.7464279956633,
+   "ssim": 0.8115832805633545,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_108_clean.jpg",
+   "style": "clean",
+   "err_pct": 1.6018334653852595,
+   "iou": 0.9582714681440443,
+   "psnr": 19.066250470568853,
+   "ssim": 0.9042856097221375,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_109_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 1.8780477380697098,
+   "iou": 0.8978726807421625,
+   "psnr": 17.562661745614218,
+   "ssim": 0.6578448414802551,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_110_ood.jpg",
+   "style": "ood",
+   "err_pct": 1.7346571946190201,
+   "iou": 0.9535139484978541,
+   "psnr": 18.523331075198143,
+   "ssim": 0.7470322847366333,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_111_clean.jpg",
+   "style": "clean",
+   "err_pct": 0.7838402714036532,
+   "iou": 0.9848840561802381,
+   "psnr": 22.42633546005029,
+   "ssim": 0.9168835282325745,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_112_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 1.0961773068073128,
+   "iou": 0.948040931021685,
+   "psnr": 11.823448923113617,
+   "ssim": 0.8217427134513855,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_113_ood.jpg",
+   "style": "ood",
+   "err_pct": 6.377641782901019,
+   "iou": 0.695579088922508,
+   "psnr": 19.610722157462565,
+   "ssim": 0.7923588156700134,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_114_clean.jpg",
+   "style": "clean",
+   "err_pct": 1.7085110472095142,
+   "iou": 0.9364263539151432,
+   "psnr": 21.129455150896973,
+   "ssim": 0.9631567597389221,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_115_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 0.7587584303761946,
+   "iou": 0.9686720266149155,
+   "psnr": 15.929304397992876,
+   "ssim": 0.6852390766143799,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_116_ood.jpg",
+   "style": "ood",
+   "err_pct": 0.509849610095945,
+   "iou": 0.9817212896349587,
+   "psnr": 14.777240814534897,
+   "ssim": 0.5620515942573547,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_117_clean.jpg",
+   "style": "clean",
+   "err_pct": 0.72610741703572,
+   "iou": 0.9858661239258254,
+   "psnr": 16.627092286421792,
+   "ssim": 0.8568630218505859,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_118_corner-hard.jpg",
+   "style": "corner-hard",
+   "err_pct": 1.6459688675232156,
+   "iou": 0.9815363811307016,
+   "psnr": 10.591452620648056,
+   "ssim": 0.5806798934936523,
+   "source": "network"
+  },
+  {
+   "file": "photos/pack_119_ood.jpg",
+   "style": "ood",
+   "err_pct": 0.6430424369092704,
+   "iou": 0.9835763668749812,
+   "psnr": 18.645351272000504,
+   "ssim": 0.8348491191864014,
+   "source": "network"
+  }
+ ]
+}

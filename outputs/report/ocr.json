@@ -1,0 +1,32 @@
+{
+ "rows": [
+  {
+   "Image": "degraded input",
+   "n": 20,
+   "OCR confidence": 43.77752255493967,
+   "words read": 13.15,
+   "CER vs clean scan": 0.8280444529859383,
+   "WER vs clean scan": 0.9372856386176058
+  },
+  {
+   "Image": "enhanced",
+   "n": 20,
+   "OCR confidence": 55.387020373753614,
+   "words read": 38.25,
+   "CER vs clean scan": 0.7570988815811553,
+   "WER vs clean scan": 0.9236581768628006
+  },
+  {
+   "Image": "clean target",
+   "n": 20,
+   "OCR confidence": 71.41051964540011,
+   "words read": 110.0,
+   "CER vs clean scan": 0.0,
+   "WER vs clean scan": 0.0
+  }
+ ],
+ "engine": "tesseract",
+ "engines_available": [
+  "tesseract"
+ ]
+}
