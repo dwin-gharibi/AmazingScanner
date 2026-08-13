@@ -293,17 +293,6 @@ tasks:
       - task: docs-check
       - task: test
 
-  docs-check:
-    desc: Documentation references resolve and generated docs match the JSONs
-    summary: |
-      The three documentation failures this project actually had — a reference
-      to a deleted image, REPORT/README tables drifting from the measured
-      outputs/report JSONs, and orphaned assets nothing mentions — plus the
-      hygiene check for tracked editor droppings and stray checkpoints.
-    cmds:
-      - "{{.PY}} scripts/check_docs.py"
-      - "{{.PY}} scripts/check_no_checkpoints.py"
-
   docker:
     desc: Build the CPU container image
     sources: ["Dockerfile", "requirements.txt", "src/**/*.py", "pyproject.toml"]

@@ -146,7 +146,7 @@ resource "kubernetes_deployment" "this" {
 
           security_context {
             allow_privilege_escalation = false
-            read_only_root_filesystem = false
+            read_only_root_filesystem  = false
             capabilities {
               drop = ["ALL"]
             }

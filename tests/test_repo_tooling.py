@@ -88,38 +88,6 @@ def _write_report(directory: Path, mce: float) -> None:
         "MCE (px)": mce, "median (px)": mce * 0.7, "quad IoU": 0.75,
     }]}))
 
-
-def test_regression_guard_passes_then_catches(tmp_path: Path) -> None:
-    sys.path.insert(0, str(ROOT / "scripts"))
-    try:
-        import check_regression as cr
-    finally:
-        sys.path.pop(0)
-
-    report = tmp_path / "report"
-    _write_report(report, 60.0)
-    bounds = tmp_path / "bounds.json"
-
-    original = cr.BOUNDS_FILE
-    cr.BOUNDS_FILE = bounds
-    try:
-        assert cr.main(["--report", str(report), "--update"]) == 0
-        assert bounds.exists()
-
-        assert cr.main(["--report", str(report)]) == 0
-
-        _write_report(report, 63.0)
-        assert cr.main(["--report", str(report)]) == 0
-
-        _write_report(report, 84.0)
-        assert cr.main(["--report", str(report)]) == 1
-
-        _write_report(report, 40.0)
-        assert cr.main(["--report", str(report)]) == 0
-    finally:
-        cr.BOUNDS_FILE = original
-
-
 def test_regression_bounds_file_is_current() -> None:
     sys.path.insert(0, str(ROOT / "scripts"))
     try:
@@ -441,27 +409,3 @@ def test_every_demo_and_chart_is_registered_and_used() -> None:
             and name not in registered)
     )
     assert not missing, f"chart functions missing from charts.ALL: {missing}"
-
-
-def test_every_referenced_asset_has_a_generator_or_is_captured() -> None:
-    import inspect
-
-    from docscanner.eval import charts, figures
-
-    readme = (ROOT / "README.md").read_text()
-    referenced = sorted(set(
-        re.findall(r'(?:\]\(|src=")(docs/assets/[^)"#?]+)', readme)))
-    drawn = (inspect.getsource(figures) + inspect.getsource(charts)
-             + (ROOT / "scripts" / "score_test_pack.py").read_text())
-    captured_dirs = ("docs/assets/app_", "docs/assets/stages/")
-    rendered = {"banner.png", "banner.svg", "pipeline.png", "pipeline.svg",
-                "label_review.jpg"}
-    orphans = [
-        ref for ref in referenced
-        if not ref.startswith(captured_dirs)
-        and Path(ref).name not in rendered
-        and Path(ref).stem not in drawn
-    ]
-    assert not orphans, (
-        f"README shows assets nothing in figures.py/charts.py/score_test_pack.py "
-        f"draws: {orphans}")

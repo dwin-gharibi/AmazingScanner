@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 
 import numpy as np
+
 SEED_BASE = 7000
 
 

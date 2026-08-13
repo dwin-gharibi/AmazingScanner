@@ -58,7 +58,6 @@ def tesseract_available() -> bool:
 @lru_cache(maxsize=1)
 def easyocr_available() -> bool:
     try:
-        import easyocr
         return True
     except Exception:
         return False

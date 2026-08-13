@@ -362,8 +362,8 @@ def chart_dropout_gap():
                 label="+ dropout")
     _labels(ax, b1, "{:.2f}"); _labels(ax, b2, "{:.2f}")
     ax.set_xticks(x, [d[0] for d in data])
-    ax.set_ylabel("|synthetic − real| gap (percentage points of diagonal)")
-    ax.set_title("Section 6 — does dropout shrink the synthetic-to-real gap?")
+    ax.set_ylabel("|synthetic - real| gap (percentage points of diagonal)")
+    ax.set_title("Section 6 - does dropout shrink the synthetic-to-real gap?")
     ax.legend(frameon=False)
     _despine(ax)
     shrink = ", ".join(f"{d[0].split('—')[1].strip()} by {abs(d[1]) - abs(d[2]):+.2f} pp"
