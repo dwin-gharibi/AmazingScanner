@@ -1,0 +1,43 @@
+name: enhance_main
+
+model:
+  arch: DocEnhanceNet
+  base: 32
+  depth: 4
+  max_ch: 256
+  bilinear_upsample: true
+  squeeze_excitation: true
+  background_prior: true
+  residual_output: true
+  dropout: 0.0
+
+data:
+  policy: for_enhancement
+  crop: 192
+  crops_per_photo: 6
+  photo_long_side: 1280
+  page_size_range: [640, 1152]
+  course_scan_share: 0.45
+
+loss:
+  preset: combined
+
+optim:
+  optimizer: adamw
+  lr: 2.5e-3
+  betas: [0.9, 0.99]
+  weight_decay: 0.0
+  grad_clip: 1.0
+  schedule: cosine
+  warmup_frac: 0.05
+  min_lr_ratio: 0.02
+  ema_decay: 0.999
+
+train:
+  epochs: 11
+  steps_per_epoch: 150
+  batch_size: 10
+  channels_last: true
+  num_workers: 2
+  threads: 4
+  monitor: val_psnr
