@@ -1,0 +1,13 @@
+# Copy to terraform.tfvars and edit. Every value here already has a working
+# default in variables.tf -- this file is only for overriding.
+
+# image        = "ghcr.io/dwin-gharibi/amazingscanner:v1.0.0"
+# namespace    = "scanning"
+# replicas     = 3
+# service_type = "LoadBalancer"
+
+# A laptop cluster (kind / minikube / k3s) usually wants less:
+# cpu_limit    = "2"
+# threads      = 2
+# memory_limit = "2Gi"
+# enable_autoscaling = false
