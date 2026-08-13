@@ -1,0 +1,60 @@
+name: A photograph scans badly
+description: The scanner missed the page, cut a corner, or made the text harder to read
+labels: ["bad-scan"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The most useful thing you can attach is the photograph itself. Failures
+        in this project are almost always about a *kind* of page — open books
+        that show two facing pages, documents photographed on a patterned
+        surface, glossy paper under a hard light — and one example of a kind is
+        worth more than a paragraph describing it.
+
+  - type: textarea
+    id: photo
+    attributes:
+      label: The photograph
+      description: Drag the original in here, unedited and uncropped.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: stage
+    attributes:
+      label: Which stage went wrong?
+      description: |
+        `amazingscanner stages --image photo.jpg --limit 1` writes every stage
+        as its own image, which usually answers this in a glance.
+      options:
+        - Detection — the four corners landed in the wrong place
+        - Rectification — corners look right, the flattened page does not
+        - Enhancement — geometry is right, the page is washed out or too dark
+        - The whole thing — nothing resembling the document came out
+        - Not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: output
+    attributes:
+      label: What came out
+      description: The result, and the `stages/` images if you have them.
+
+  - type: input
+    id: command
+    attributes:
+      label: The command you ran
+      placeholder: amazingscanner scan photo.jpg -o outputs/
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      value: |
+        - OS:
+        - Python:
+        - Installed how: pip / docker / clone
+        - Weights: shipped `models/` or your own training run
+    validations:
+      required: false

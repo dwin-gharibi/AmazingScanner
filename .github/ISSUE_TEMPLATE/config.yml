@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: What the numbers mean
+    url: https://github.com/dwin-gharibi/AmazingScanner/blob/main/docs/REPORT.md
+    about: Every measured result, how it was measured, and on which set.
+  - name: Command reference
+    url: https://github.com/dwin-gharibi/AmazingScanner/blob/main/docs/CLI.md
+    about: Every command, its flags, and the order things run in.
+  - name: Questions and ideas
+    url: https://github.com/dwin-gharibi/AmazingScanner/discussions
+    about: For anything that is not a defect.

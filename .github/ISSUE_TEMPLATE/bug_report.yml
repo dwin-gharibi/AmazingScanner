@@ -1,0 +1,39 @@
+name: Something is broken
+description: A crash, a traceback, or a command that does not do what it says
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you expected, and what you got instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: How to reproduce it
+      description: The commands, in order, starting from a fresh clone if you can.
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: traceback
+    attributes:
+      label: The full traceback
+      description: All of it, not just the last line — the frame that matters is usually higher up.
+      render: python
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      value: |
+        - OS:
+        - Python:
+        - torch (`python -c "import torch; print(torch.__version__, torch.cuda.is_available())"`):
+        - Installed how: pip / docker / clone
+    validations:
+      required: true

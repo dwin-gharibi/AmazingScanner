@@ -1,0 +1,216 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: lint and types
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install the linters
+        run: python -m pip install --upgrade pip ruff mypy types-PyYAML types-requests
+
+      - name: ruff check
+        run: ruff check src tests scripts ./*.py --output-format=github
+
+      - name: mypy
+        continue-on-error: true
+        run: mypy src/docscanner
+
+      - name: actionlint
+        run: |
+          bash <(curl -fsSL https://raw.githubusercontent.com/rhysd/actionlint/v1.7.7/scripts/download-actionlint.bash) 1.7.7
+          ./actionlint -color
+
+  manifests:
+    name: deployment manifests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install the package (the validator resolves CLI commands)
+        run: |
+          python -m pip install --upgrade pip pyyaml
+          pip install --no-deps -e .
+
+      - uses: azure/setup-helm@v4
+        with:
+          version: v3.16.3
+
+      - uses: opentofu/setup-opentofu@v1
+        with:
+          tofu_version: 1.8.5
+
+      - name: Install ansible-lint and kubectl
+        run: |
+          python -m pip install ansible-core
+          curl -fsSLo /tmp/kubectl "https://dl.k8s.io/release/$(curl -fsSL https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+          sudo install -m 0755 /tmp/kubectl /usr/local/bin/kubectl
+
+      - name: Validate every manifest
+        run: python scripts/validate_manifests.py
+
+      - name: Repository hygiene
+        run: |
+          python scripts/check_no_checkpoints.py
+
+  docs:
+    name: documentation integrity
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install the report generator's world (stdlib-only imports)
+        run: |
+          python -m pip install --upgrade pip
+          pip install --no-deps -e .
+
+      - name: Docs match the repository and the measurements
+        run: python scripts/check_docs.py
+
+  package:
+    name: build and install the wheel
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Build sdist and wheel
+        run: |
+          python -m pip install --upgrade pip build twine
+          python -m build
+          twine check dist/*
+
+      - name: The wheel installs and the CLI answers
+        run: |
+          python -m venv /tmp/wheelenv
+          /tmp/wheelenv/bin/pip install --quiet --index-url https://download.pytorch.org/whl/cpu torch
+          /tmp/wheelenv/bin/pip install --quiet dist/*.whl
+          /tmp/wheelenv/bin/amazingscanner --help > /dev/null
+          /tmp/wheelenv/bin/python -c "import docscanner; print('wheel OK')"
+
+      - name: Keep the artefacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-${{ github.sha }}
+          path: dist/
+          retention-days: 14
+
+  test:
+    name: tests (python ${{ matrix.python }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends tesseract-ocr tesseract-ocr-eng
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install --index-url https://download.pytorch.org/whl/cpu torch
+          pip install -r requirements.txt
+          pip install -e .
+
+      - name: Run tests
+        env:
+          OMP_NUM_THREADS: "2"
+        run: pytest tests/ -q --maxfail=3
+
+      - name: Smoke-test the synthetic generator end to end
+        run: |
+          python - <<'PY'
+          import numpy as np, cv2, tempfile, pathlib
+          from docscanner.data.corpus import ScanCorpus, BackgroundCorpus
+          from docscanner.data.generator import SyntheticSampleGenerator
+          from docscanner.data.degrade import DegradationConfig
+
+          root = pathlib.Path(tempfile.mkdtemp())
+          (root / "s").mkdir(); (root / "b").mkdir()
+          page = np.full((400, 300, 3), 250, np.uint8)
+          for i in range(12):
+              cv2.line(page, (30, 30 + i * 28), (270, 30 + i * 28), (25, 25, 35), 3)
+          cv2.imwrite(str(root / "s" / "a.png"), page)
+          cv2.imwrite(str(root / "b" / "t.png"),
+                      (np.random.rand(200, 200, 3) * 160 + 40).astype(np.uint8))
+
+          gen = SyntheticSampleGenerator(
+              ScanCorpus.from_dir(root / "s"), BackgroundCorpus.from_dir(root / "b"),
+              cfg=DegradationConfig.for_enhancement(),
+              photo_long_side=480, page_long_side=320)
+          s = gen.generate(0)
+          assert s.rectified.shape == s.target.shape
+          assert s.corners.shape == (4, 2)
+          print("generator OK", s.photo.shape, s.page_size)
+          PY
+
+      - name: Smoke-test the app and pipeline modules import
+        run: |
+          python -c "from docscanner.app.gradio_app import build_app; build_app(); print('app OK')"
+          python -m docscanner.pipeline.run --help > /dev/null && echo "pipeline CLI OK"
+
+  docker:
+    name: docker build
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: Build image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: false
+          load: true
+          tags: docscanner:ci
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+      - name: Container starts and serves
+        run: |
+          docker run -d --name ds -p 7860:7860 docscanner:ci
+          for _ in $(seq 1 30); do
+            if curl -fsS http://localhost:7860/ > /dev/null; then echo "app is serving"; exit 0; fi
+            sleep 3
+          done
+          echo "app did not come up in time"; docker logs ds; exit 1

@@ -1,0 +1,42 @@
+version: 2
+
+updates:
+  - package-ecosystem: pip
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "06:00"
+    open-pull-requests-limit: 5
+    labels: ["dependencies", "python"]
+    groups:
+      torch:
+        patterns: ["torch*"]
+      scientific:
+        patterns: ["numpy", "scipy", "pandas", "scikit-image", "matplotlib", "pyarrow"]
+      dev-tooling:
+        patterns: ["pytest*", "ruff", "mypy", "pre-commit", "types-*"]
+    ignore:
+      - dependency-name: torch
+        update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: monthly
+    labels: ["dependencies", "ci"]
+    groups:
+      actions:
+        patterns: ["*"]
+
+  - package-ecosystem: docker
+    directory: "/"
+    schedule:
+      interval: monthly
+    labels: ["dependencies", "docker"]
+
+  - package-ecosystem: terraform
+    directory: "/deploy/terraform"
+    schedule:
+      interval: monthly
+    labels: ["dependencies", "infra"]

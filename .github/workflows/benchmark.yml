@@ -1,0 +1,87 @@
+name: Accuracy guard
+on:
+  pull_request:
+    paths:
+      - "src/docscanner/**"
+      - "models/**"
+      - "requirements.txt"
+  schedule:
+    - cron: "0 4 * * 1"
+  workflow_dispatch:
+
+concurrency:
+  group: benchmark-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  measure:
+    name: real photographs
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q tesseract-ocr
+          python -m pip install --upgrade pip
+          pip install --index-url https://download.pytorch.org/whl/cpu torch
+          pip install -r requirements.txt
+          pip install -e .
+
+      - name: Confirm the weights are present
+        run: |
+          ls -la models/
+          test -f models/corner_heatmap.pt || { echo "no exported weights to measure"; exit 1; }
+
+      - name: Measure against the frozen real set
+        env:
+          OMP_NUM_THREADS: "2"
+        run: amazingscanner eval --corners --end-to-end --variants shipped
+
+      - name: Compare against the regression bounds
+        run: |
+          python scripts/check_regression.py \
+            --report outputs/report \
+            --markdown outputs/report/regression.md
+
+      - name: Keep the measurements
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-${{ github.run_number }}
+          path: outputs/report/
+          retention-days: 90
+
+      - name: Comment the numbers on the pull request
+        if: github.event_name == 'pull_request' && always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = 'outputs/report/regression.md';
+            if (!fs.existsSync(path)) return;
+            const body = "### Accuracy on the real photographs\n\n"
+                       + fs.readFileSync(path, 'utf8');
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner, repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            // Update one comment rather than adding a new one per push.
+            const mine = comments.find(c => c.user.type === 'Bot'
+                                         && c.body.includes('Accuracy on the real photographs'));
+            if (mine) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                comment_id: mine.id, body });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: context.issue.number, body });
+            }

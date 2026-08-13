@@ -1,0 +1,154 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Image tag to publish (defaults to the commit SHA)"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  packages: write
+  id-token: write
+  security-events: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE: ${{ github.repository }}
+
+jobs:
+  image:
+    name: build, scan and push
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    outputs:
+      digest: ${{ steps.build.outputs.digest }}
+      tags: ${{ steps.meta.outputs.tags }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Log in to the registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Derive tags and labels
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE }}
+          tags: |
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=raw,value=latest,enable=${{ startsWith(github.ref, 'refs/tags/v') }}
+            type=sha,format=long
+          labels: |
+            org.opencontainers.image.title=AmazingScanner
+            org.opencontainers.image.description=CNN document scanner: corner detection, rectification and enhancement
+
+      - name: Build and push
+        id: build
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          provenance: true
+          sbom: true
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Scan the published image
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE }}@${{ steps.build.outputs.digest }}
+          format: sarif
+          output: trivy.sarif
+          severity: CRITICAL,HIGH
+          exit-code: "0"
+
+      - name: Upload the scan
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: trivy.sarif
+
+      - name: Sign the image
+        uses: sigstore/cosign-installer@v3
+      - name: cosign sign
+        run: |
+          cosign sign --yes \
+            "${REGISTRY}/${IMAGE}@${{ steps.build.outputs.digest }}"
+
+  manifests:
+    name: validate deployment manifests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate Kubernetes manifests against the real schemas
+        uses: instrumenta/kubeval-action@master
+        with:
+          files: deploy/k8s
+
+      - name: Lint the chart
+        run: |
+          if [ -d deploy/helm ]; then
+            curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+            helm lint deploy/helm
+            helm template amazingscanner deploy/helm > /dev/null && echo "chart renders"
+          fi
+
+      - name: Terraform / OpenTofu validate
+        run: |
+          curl -fsSL https://get.opentofu.org/install-opentofu.sh -o /tmp/tofu.sh
+          chmod +x /tmp/tofu.sh && /tmp/tofu.sh --install-method standalone
+          cd deploy/terraform
+          tofu fmt -check -diff
+          tofu init -backend=false
+          tofu validate
+
+      - name: Ansible syntax
+        run: |
+          pip install ansible-core
+          ansible-playbook --syntax-check \
+            -i deploy/ansible/inventory.ini deploy/ansible/playbook.yml
+
+  weights:
+    name: attach deployable weights
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Attach the exported models to the release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            models/*.pt
+          fail_on_unmatched_files: false
+          body: |
+            Deployable fp16 weights for this release.
+
+            ```bash
+            docker run -p 7860:7860 ghcr.io/${{ github.repository }}:${{ github.ref_name }}
+            ```
