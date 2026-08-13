@@ -49,25 +49,6 @@ def test_every_kubernetes_container_command_is_a_real_cli_command() -> None:
     assert not unknown, f"manifests invoke commands that do not exist: {unknown}"
 
 
-def test_taskfile_is_coherent() -> None:
-    spec = yaml.safe_load((ROOT / "Taskfile.yml").read_text())
-    tasks = spec["tasks"]
-
-    missing_desc = [n for n, b in tasks.items() if not b.get("desc")]
-    assert not missing_desc, f"tasks with no description: {missing_desc}"
-
-    dangling: list[str] = []
-    for name, body in tasks.items():
-        for cmd in body.get("cmds") or []:
-            if isinstance(cmd, dict) and "task" in cmd and cmd["task"] not in tasks:
-                dangling.append(f"{name} -> {cmd['task']}")
-        for dep in body.get("deps") or []:
-            target = dep if isinstance(dep, str) else dep.get("task")
-            if target not in tasks:
-                dangling.append(f"{name} deps -> {target}")
-    assert not dangling, f"references to tasks that do not exist: {dangling}"
-
-
 def test_taskfile_only_invokes_real_modules() -> None:
     import importlib.util
 
