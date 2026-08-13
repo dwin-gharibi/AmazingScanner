@@ -35,6 +35,9 @@ A page photographed with a phone comes out tilted, dim, shadowed and blurred.
 something a scanner would have produced - the job CamScanner does, built from the
 ground up.
 
+![Course scans, all four stages](docs/assets/gallery_course.jpg)
+
+
 | Task | Input | Output |
 |---|---|---|
 | **1 - Enhancement** | a degraded, rectified page | a clean, scanner-quality page |
@@ -47,6 +50,10 @@ ground up.
 
 Every requirement of the brief, mapped to the code that implements it, the
 figure that shows it and the number that answers it:
+
+<div align="center">
+  <img src="docs/assets/enhance_wipe_real.gif" alt="Enhancement wipe on real photographs" width="640">
+</div>
 
 **Every rubric line has its own section below**, with the description, the
 measured numbers, the table and the demo:
@@ -111,17 +118,9 @@ diversity is real rather than claimed:
 > the failure mode the detector finds hardest and the one the page-mask head
 > exists to fight. The numbers below are measured on that, not on an easy set.
 
-**They are never trained on and never degraded** - they arrive degraded by
-reality. Every number in this README that says "real photographs" is a
-test-set number on these 25.
 
 ![All 25 real test photographs](docs/assets/real_gallery.jpg)
 
-Each one, end to end, worst first: **[docs/assets/stages/](docs/assets/stages/README.md)**
-
-<div align="center">
-  <img src="docs/assets/stages_demo.gif" alt="The four named stages on real photographs" width="720">
-</div>
 
 ### A2 · A commercial reference scan for each
 
