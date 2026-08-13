@@ -1,0 +1,34 @@
+REPO_ROOT = File.expand_path("../..", __dir__)
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "bento/ubuntu-24.04"
+  config.vm.hostname = "amazingscanner"
+  config.vm.network "forwarded_port", guest: 7860, host: 7860, host_ip: "127.0.0.1"
+  config.vm.synced_folder REPO_ROOT, "/repo"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = 4096
+    vb.cpus = 4
+    vb.name = "amazingscanner"
+  end
+
+  config.vm.provider "libvirt" do |lv|
+    lv.memory = 4096
+    lv.cpus = 4
+  end
+
+  config.vm.provision "ansible_local" do |ansible|
+    ansible.provisioning_path = "/repo/deploy/ansible"
+    ansible.playbook = "playbook.yml"
+    ansible.compatibility_mode = "2.0"
+    ansible.groups = { "scanners" => ["default"] }
+    ansible.verbose = false
+  end
+
+  config.vm.post_up_message = <<~MSG
+    AmazingScanner is starting inside the VM.
+    Open http://localhost:7860 (the first request loads the models, so give it a moment).
+      vagrant ssh -c 'systemctl status amazingscanner'
+      vagrant ssh -c 'sudo podman logs -f amazingscanner'
+  MSG
+end
