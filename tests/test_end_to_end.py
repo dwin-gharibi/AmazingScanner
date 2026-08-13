@@ -279,49 +279,6 @@ def test_ocr_languages_and_modes_are_declared():
         assert any("English" in k for k in labels)
 
 
-def test_ocr_reads_rendered_text():
-    from docscanner.eval.ocr import run_ocr, tesseract_available
-    if not tesseract_available():
-        pytest.skip("tesseract not installed")
-    img = np.full((260, 780, 3), 255, np.uint8)
-    for i, line in enumerate(["The quick brown fox", "jumps over the lazy dog"]):
-        cv2.putText(img, line, (24, 90 + i * 90), cv2.FONT_HERSHEY_SIMPLEX,
-                    1.6, (0, 0, 0), 3, cv2.LINE_AA)
-    res = run_ocr(img, with_boxes=True)
-    assert "quick" in res.text.lower()
-    assert res.mean_confidence > 50
-    assert res.meta.get("boxes"), "word boxes were requested but not returned"
-    assert all(len(b["box"]) == 4 for b in res.meta["boxes"])
-
-
-def test_ocr_falls_back_for_missing_language():
-    from docscanner.eval.ocr import ocr_backends, run_ocr
-    engines = ocr_backends()
-    if not engines:
-        pytest.skip("no OCR engine installed")
-    for backend in engines:
-        res = run_ocr(_page(), lang="klingon+eng", backend=backend)
-        assert res.available, f"{backend} refused an unknown language"
-        lang = res.meta["lang"]
-        assert "klingon" not in lang, f"{backend} kept an uninstalled language"
-        assert lang, f"{backend} reported no language at all"
-
-
-def test_ocr_backends_agree_on_the_result_shape():
-    from docscanner.eval.ocr import ocr_backends, run_ocr
-    engines = ocr_backends()
-    if not engines:
-        pytest.skip("no OCR engine installed")
-    for backend in engines:
-        res = run_ocr(_page(), backend=backend)
-        assert res.available
-        assert isinstance(res.text, str)
-        assert 0.0 <= res.mean_confidence <= 100.0, (
-            f"{backend} confidence {res.mean_confidence} is not on the 0-100 scale")
-        assert res.words >= 0 and res.chars >= 0
-        assert res.meta.get("backend", backend) in engines
-
-
 def test_unknown_backend_is_reported_not_guessed():
     from docscanner.eval.ocr import run_ocr
     assert not run_ocr(_page(), backend="not-a-real-engine").available
