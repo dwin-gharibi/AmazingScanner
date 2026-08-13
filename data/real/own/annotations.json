@@ -1,0 +1,856 @@
+{
+ "name": "real-photos",
+ "count": 25,
+ "items": [
+  {
+   "file": "photos/img1.jpg",
+   "corners": [
+    [
+     28.81999969482422,
+     586.4500122070312
+    ],
+    [
+     381.67999267578125,
+     355.8299865722656
+    ],
+    [
+     738.780029296875,
+     897.1400146484375
+    ],
+    [
+     368.8599853515625,
+     1125.199951171875
+    ]
+   ],
+   "meta": {
+    "source": "coco-segmentation",
+    "original": "img1_main_jpg.rf.bcbf2debd59d0993916af4e7d84d11b0.jpg",
+    "roboflow_size": [
+     432,
+     432
+    ],
+    "native_size": [
+     876,
+     1280
+    ]
+   },
+   "reference": "reference/img1.jpg"
+  },
+  {
+   "file": "photos/img2.jpg",
+   "corners": [
+    [
+     303.4800109863281,
+     372.3299865722656
+    ],
+    [
+     715.239990234375,
+     394.7900085449219
+    ],
+    [
+     698.77001953125,
+     1028.6700439453125
+    ],
+    [
+     286.0799865722656,
+     1022.1699829101562
+    ]
+   ],
+   "meta": {
+    "source": "coco-segmentation",
+    "original": "img2_main_jpg.rf.e41b6de901be403371e5c616d0bb852a.jpg",
+    "roboflow_size": [
+     432,
+     432
+    ],
+    "native_size": [
+     1042,
+     1250
+    ]
+   },
+   "reference": "reference/img2.jpg"
+  },
+  {
+   "file": "photos/img3.jpg",
+   "corners": [
+    [
+     63.45000076293945,
+     500.3299865722656
+    ],
+    [
+     417.760009765625,
+     405.67999267578125
+    ],
+    [
+     547.0499877929688,
+     913.280029296875
+    ],
+    [
+     203.2100067138672,
+     1015.97998046875
+    ]
+   ],
+   "meta": {
+    "source": "coco-segmentation",
+    "original": "img3_main_jpg.rf.1017740f8554340bf5d863f19155f785.jpg",
+    "roboflow_size": [
+     432,
+     432
+    ],
+    "native_size": [
+     725,
+     1280
+    ]
+   },
+   "reference": "reference/img3.jpg"
+  },
+  {
+   "file": "photos/img4.jpg",
+   "corners": [
+    [
+     178.85000610351562,
+     166.6699981689453
+    ],
+    [
+     752.22998046875,
+     159.64999389648438
+    ],
+    [
+     767.4400024414062,
+     963.8099975585938
+    ],
+    [
+     226.5800018310547,
+     996.8300170898438
+    ]
+   ],
+   "meta": {
+    "source": "coco-segmentation",
+    "original": "img4_main_jpg.rf.19fc7a67e183d0ee85ff61957d0a55b9.jpg",
+    "roboflow_size": [
+     432,
+     432
+    ],
+    "native_size": [
+     1042,
+     1112
+    ]
+   },
+   "reference": "reference/img4.jpg"
+  },
+  {
+   "file": "photos/img5.jpg",
+   "corners": [
+    [
+     119.2300033569336,
+     245.66000366210938
+    ],
+    [
+     615.780029296875,
+     125.8499984741211
+    ],
+    [
+     882.969970703125,
+     852.4600219726562
+    ],
+    [
+     395.4200134277344,
+     1034.0799560546875
+    ]
+   ],
+   "meta": {
+    "source": "coco-segmentation",
+    "original": "img5_main_jpg.rf.4f0a9ce66b8f546a4b2c0c22c370529b.jpg",
+    "roboflow_size": [
+     432,
+     432
+    ],
+    "native_size": [
+     1042,
+     1223
+    ]
+   },
+   "reference": "reference/img5.jpg"
+  },
+  {
+   "file": "photos/img6.jpg",
+   "corners": [
+    [
+     157.47999572753906,
+     490.57000732421875
+    ],
+    [
+     494.4100036621094,
+     350.4599914550781
+    ],
+    [
+     762.6199951171875,
+     928.0599975585938
+    ],
+    [
+     398.4700012207031,
+     1081.6800537109375
+    ]
+   ],
+   "meta": {
+    "source": "coco-segmentation",
+    "original": "img6_main_jpg.rf.f97e1a73eeca3c0df673eee91cd05a7f.jpg",
+    "roboflow_size": [
+     432,
+     432
+    ],
+    "native_size": [
+     896,
+     1280
+    ]
+   },
+   "reference": "reference/img6.jpg"
+  },
+  {
+   "file": "photos/img7.jpg",
+   "corners": [
+    [
+     61.66999816894531,
+     180.47000122070312
+    ],
+    [
+     372.2699890136719,
+     120.77999877929688
+    ],
+    [
+     546.6300048828125,
+     543.3400268554688
+    ],
+    [
+     203.8699951171875,
+     647.1900024414062
+    ]
+   ],
+   "meta": {
+    "source": "coco-segmentation",
+    "original": "img7_main_jpg.rf.62697ad4215e042d8f07d8e9fcd28d6d.jpg",
+    "roboflow_size": [
+     432,
+     432
+    ],
+    "native_size": [
+     577,
+     846
+    ]
+   },
+   "reference": "reference/img7.jpg"
+  },
+  {
+   "file": "photos/img8.jpg",
+   "corners": [
+    [
+     93.83000183105469,
+     317.32000732421875
+    ],
+    [
+     509.6499938964844,
+     268.7900085449219
+    ],
+    [
+     606.9000244140625,
+     937.9099731445312
+    ],
+    [
+     170.4499969482422,
+     992.9600219726562
+    ]
+   ],
+   "meta": {
+    "source": "coco-segmentation",
+    "original": "img8_main_jpg.rf.25f872e625094dd727f47f2a07faa257.jpg",
+    "roboflow_size": [
+     432,
+     432
+    ],
+    "native_size": [
+     747,
+     1280
+    ]
+   },
+   "reference": "reference/img8.jpg"
+  },
+  {
+   "file": "photos/img9.jpg",
+   "corners": [
+    [
+     106.04000091552734,
+     280.0899963378906
+    ],
+    [
+     563.5599975585938,
+     272.4100036621094
+    ],
+    [
+     586.1699829101562,
+     951.239990234375
+    ],
+    [
+     96.93000030517578,
+     948.0
+    ]
+   ],
+   "meta": {
+    "source": "coco-segmentation",
+    "original": "img9_main_jpg.rf.cd1d077b32157f14154a2214731237a2.jpg",
+    "roboflow_size": [
+     432,
+     432
+    ],
+    "native_size": [
+     783,
+     1280
+    ]
+   },
+   "reference": "reference/img9.jpg"
+  },
+  {
+   "file": "photos/img10.jpg",
+   "corners": [
+    [
+     111.83999633789062,
+     211.82000732421875
+    ],
+    [
+     603.8800048828125,
+     38.34000015258789
+    ],
+    [
+     731.27001953125,
+     374.1600036621094
+    ],
+    [
+     214.44000244140625,
+     539.2000122070312
+    ]
+   ],
+   "meta": {
+    "source": "coco-segmentation",
+    "original": "img10_main_jpg.rf.90165f4a698cfe91ce831f8e86dc0a47.jpg",
+    "roboflow_size": [
+     432,
+     432
+    ],
+    "native_size": [
+     805,
+     564
+    ]
+   },
+   "reference": "reference/img10.jpg"
+  },
+  {
+   "file": "photos/img11.jpg",
+   "corners": [
+    [
+     57.5,
+     142.85000610351562
+    ],
+    [
+     340.6000061035156,
+     13.880000114440918
+    ],
+    [
+     548.4000244140625,
+     393.4700012207031
+    ],
+    [
+     207.13999938964844,
+     537.5999755859375
+    ]
+   ],
+   "meta": {
+    "source": "coco-segmentation",
+    "original": "img11_main_jpg.rf.00265121c3b7e3ccd982984756c9d5f2.jpg",
+    "roboflow_size": [
+     432,
+     432
+    ],
+    "native_size": [
+     577,
+     688
+    ]
+   },
+   "reference": "reference/img11.jpg"
+  },
+  {
+   "file": "photos/img14.jpg",
+   "corners": [
+    [
+     241.6699981689453,
+     97.13999938964844
+    ],
+    [
+     541.8499755859375,
+     272.7799987792969
+    ],
+    [
+     375.8500061035156,
+     689.3800048828125
+    ],
+    [
+     8.010000228881836,
+     524.6500244140625
+    ]
+   ],
+   "meta": {
+    "source": "coco-segmentation",
+    "original": "img14_main_jpg.rf.3691bb00399fb7577ffc998ccb7e7635.jpg",
+    "roboflow_size": [
+     432,
+     432
+    ],
+    "native_size": [
+     577,
+     900
+    ]
+   },
+   "reference": "reference/img14.jpg"
+  },
+  {
+   "file": "photos/img15.jpg",
+   "corners": [
+    [
+     30.0,
+     155.47000122070312
+    ],
+    [
+     422.42999267578125,
+     78.2300033569336
+    ],
+    [
+     576.0,
+     615.3900146484375
+    ],
+    [
+     175.2100067138672,
+     726.4000244140625
+    ]
+   ],
+   "meta": {
+    "source": "coco-segmentation",
+    "original": "img15_main_jpg.rf.16aea9b8780bc1a2487b1edeedf66cc3.jpg",
+    "roboflow_size": [
+     432,
+     432
+    ],
+    "native_size": [
+     577,
+     882
+    ]
+   },
+   "reference": "reference/img15.jpg"
+  },
+  {
+   "file": "photos/img17.jpg",
+   "corners": [
+    [
+     64.0,
+     150.57000732421875
+    ],
+    [
+     520.5700073242188,
+     148.08999633789062
+    ],
+    [
+     511.9700012207031,
+     865.72998046875
+    ],
+    [
+     82.02999877929688,
+     878.6300048828125
+    ]
+   ],
+   "meta": {
+    "source": "coco-segmentation",
+    "original": "img17_main_jpg.rf.2cd92b40542557efdf4c0cd40aadeffe.jpg",
+    "roboflow_size": [
+     432,
+     432
+    ],
+    "native_size": [
+     577,
+     1008
+    ]
+   },
+   "reference": "reference/img17.jpg"
+  },
+  {
+   "file": "photos/img18.jpg",
+   "corners": [
+    [
+     28.329999923706055,
+     318.80999755859375
+    ],
+    [
+     283.8900146484375,
+     178.75
+    ],
+    [
+     510.79998779296875,
+     610.8599853515625
+    ],
+    [
+     281.5,
+     758.8800048828125
+    ]
+   ],
+   "meta": {
+    "source": "coco-segmentation",
+    "original": "img18_main_jpg.rf.a8cc22343dfda2f2e6e79188ca55087b.jpg",
+    "roboflow_size": [
+     432,
+     432
+    ],
+    "native_size": [
+     577,
+     877
+    ]
+   },
+   "reference": "reference/img18.jpg"
+  },
+  {
+   "file": "photos/img19.jpg",
+   "corners": [
+    [
+     297.1400146484375,
+     101.83000183105469
+    ],
+    [
+     557.6699829101562,
+     223.13999938964844
+    ],
+    [
+     395.94000244140625,
+     653.8800048828125
+    ],
+    [
+     135.92999267578125,
+     563.8499755859375
+    ]
+   ],
+   "meta": {
+    "source": "coco-segmentation",
+    "original": "img19_main_jpg.rf.b1cd37fb19cc2f8ad88edb3a55a27618.jpg",
+    "roboflow_size": [
+     432,
+     432
+    ],
+    "native_size": [
+     577,
+     798
+    ]
+   },
+   "reference": "reference/img19.jpg"
+  },
+  {
+   "file": "photos/img20.jpg",
+   "corners": [
+    [
+     10.649999618530273,
+     221.6199951171875
+    ],
+    [
+     327.8399963378906,
+     98.94000244140625
+    ],
+    [
+     550.4400024414062,
+     523.0
+    ],
+    [
+     252.02999877929688,
+     684.3900146484375
+    ]
+   ],
+   "meta": {
+    "source": "coco-segmentation",
+    "original": "img20_main_jpg.rf.473518ce90af35675aee956e4a26480a.jpg",
+    "roboflow_size": [
+     432,
+     432
+    ],
+    "native_size": [
+     577,
+     902
+    ]
+   },
+   "reference": "reference/img20.jpg"
+  },
+  {
+   "file": "photos/img21.jpg",
+   "corners": [
+    [
+     200.0,
+     43.810001373291016
+    ],
+    [
+     576.0,
+     190.91000366210938
+    ],
+    [
+     336.44000244140625,
+     722.0999755859375
+    ],
+    [
+     54.59000015258789,
+     566.9199829101562
+    ]
+   ],
+   "meta": {
+    "source": "coco-segmentation",
+    "original": "img21_main_jpg.rf.0abbde09ba0204bc52b3aa68e3d42e02.jpg",
+    "roboflow_size": [
+     432,
+     432
+    ],
+    "native_size": [
+     577,
+     887
+    ]
+   },
+   "reference": "reference/img21.jpg"
+  },
+  {
+   "file": "photos/img22.jpg",
+   "corners": [
+    [
+     97.13999938964844,
+     43.2599983215332
+    ],
+    [
+     508.5400085449219,
+     30.239999771118164
+    ],
+    [
+     522.8699951171875,
+     690.1799926757812
+    ],
+    [
+     92.93000030517578,
+     681.989990234375
+    ]
+   ],
+   "meta": {
+    "source": "coco-segmentation",
+    "original": "img22_main_jpg.rf.983208514abe30ca2b06b76fcf39f588.jpg",
+    "roboflow_size": [
+     432,
+     432
+    ],
+    "native_size": [
+     577,
+     743
+    ]
+   },
+   "reference": "reference/img22.jpg"
+  },
+  {
+   "file": "photos/img23.jpg",
+   "corners": [
+    [
+     76.0,
+     150.57000732421875
+    ],
+    [
+     504.79998779296875,
+     157.8000030517578
+    ],
+    [
+     523.4299926757812,
+     823.8699951171875
+    ],
+    [
+     69.12999725341797,
+     826.72998046875
+    ]
+   ],
+   "meta": {
+    "source": "coco-segmentation",
+    "original": "img23_main_jpg.rf.f4bd8a03a28e1f5a0f6a3a1b9e061e3b.jpg",
+    "roboflow_size": [
+     432,
+     432
+    ],
+    "native_size": [
+     577,
+     1037
+    ]
+   },
+   "reference": "reference/img23.jpg"
+  },
+  {
+   "file": "photos/img24.jpg",
+   "corners": [
+    [
+     48.33000183105469,
+     340.4700012207031
+    ],
+    [
+     360.32000732421875,
+     238.02999877929688
+    ],
+    [
+     509.6099853515625,
+     689.239990234375
+    ],
+    [
+     185.9600067138672,
+     793.0900268554688
+    ]
+   ],
+   "meta": {
+    "source": "coco-segmentation",
+    "original": "img24_main_jpg.rf.730132c6cd6cf41635c5ecb2eacd2d3a.jpg",
+    "roboflow_size": [
+     432,
+     432
+    ],
+    "native_size": [
+     577,
+     822
+    ]
+   },
+   "reference": "reference/img24.jpg"
+  },
+  {
+   "file": "photos/img25.jpg",
+   "corners": [
+    [
+     89.06999969482422,
+     264.6600036621094
+    ],
+    [
+     557.7000122070312,
+     253.6199951171875
+    ],
+    [
+     654.5599975585938,
+     874.1799926757812
+    ],
+    [
+     100.16000366210938,
+     909.27001953125
+    ]
+   ],
+   "meta": {
+    "source": "coco-segmentation",
+    "original": "img25_main_jpg.rf.5ffd6897bfe099da35e3f6f3bb062e71.jpg",
+    "roboflow_size": [
+     432,
+     432
+    ],
+    "native_size": [
+     745,
+     1280
+    ]
+   },
+   "reference": "reference/img25.jpg"
+  },
+  {
+   "file": "photos/img26.jpg",
+   "corners": [
+    [
+     177.11000061035156,
+     149.22999572753906
+    ],
+    [
+     669.0900268554688,
+     173.8699951171875
+    ],
+    [
+     762.5700073242188,
+     845.0700073242188
+    ],
+    [
+     202.19000244140625,
+     867.7000122070312
+    ]
+   ],
+   "meta": {
+    "source": "coco-segmentation",
+    "original": "img26_main_jpg.rf.2c7b0e9abd2da30763788ba5ab5f082a.jpg",
+    "roboflow_size": [
+     432,
+     432
+    ],
+    "native_size": [
+     1042,
+     1222
+    ]
+   },
+   "reference": "reference/img26.jpg"
+  },
+  {
+   "file": "photos/img27.jpg",
+   "corners": [
+    [
+     187.66000366210938,
+     499.6600036621094
+    ],
+    [
+     521.8300170898438,
+     473.80999755859375
+    ],
+    [
+     533.4199829101562,
+     1021.0800170898438
+    ],
+    [
+     192.47999572753906,
+     1028.800048828125
+    ]
+   ],
+   "meta": {
+    "source": "coco-segmentation",
+    "original": "img27_main_jpg.rf.c6cf2b22cd2983c7089efc493229401a.jpg",
+    "roboflow_size": [
+     432,
+     432
+    ],
+    "native_size": [
+     792,
+     1280
+    ]
+   },
+   "reference": "reference/img27.jpg"
+  },
+  {
+   "file": "photos/img28.jpg",
+   "corners": [
+    [
+     112.62999725341797,
+     393.3599853515625
+    ],
+    [
+     514.469970703125,
+     315.70001220703125
+    ],
+    [
+     626.8099975585938,
+     962.239990234375
+    ],
+    [
+     217.24000549316406,
+     1033.6600341796875
+    ]
+   ],
+   "meta": {
+    "source": "coco-segmentation",
+    "original": "img28_main_jpg.rf.18b96d2fd979cd0c883e8a9d111b3732.jpg",
+    "roboflow_size": [
+     432,
+     432
+    ],
+    "native_size": [
+     859,
+     1280
+    ]
+   },
+   "reference": "reference/img28.jpg"
+  }
+ ]
+}
