@@ -1,0 +1,56 @@
+common:
+  data:
+    policy: for_corners
+    input_size: 256
+    photo_long_side: 640
+    normalize:
+      mean: [0.780, 0.762, 0.741]
+      std:  [0.204, 0.208, 0.213]
+  optim:
+    optimizer: adamw
+    lr: 2.0e-3
+    weight_decay: 0.0
+    grad_clip: 1.0
+    schedule: cosine
+    warmup_frac: 0.05
+    ema_decay: 0.999
+  train:
+    epochs: 8
+    steps_per_epoch: 110
+    batch_size: 16
+    channels_last: true
+    monitor: val_mce_px
+
+approach_a_regression:
+  arch: CornerRegressor
+  base: 24
+  depth: 5
+  head_dim: 256
+  dropout: 0.0
+  loss:
+    kind: wing
+    omega: 0.06
+    epsilon: 0.01
+    permutation_invariant: false
+
+approach_b_heatmap:
+  arch: CornerHeatmapNet
+  base: 24
+  depth: 4
+  out_stride: 4
+  heatmap_pad: 0.12
+  sigma: 1.6
+  dropout: 0.0
+  loss:
+    heatmap_weight: 1.0
+    pos_weight: 24.0
+    coord_weight: 0.15
+    permutation_invariant: false
+  inference:
+    readout: windowed_soft_argmax
+    window: 7
+
+refinement:
+  enabled: true
+  band_frac: 0.02
+  max_shift_frac: 0.04
