@@ -162,7 +162,8 @@ def main(argv=None) -> int:
     ap.add_argument("--out", default="outputs/report/test_pack.json")
     ap.add_argument("--threads", type=int, default=None)
     ap.add_argument("--figure", default=None,
-                    help="also render a photo-to-scan montage JPEG here")
+                    help="also render a photo-to-scan montage JPEG here "
+                         "(for example: docs/assets/pack_benchmark.jpg)")
     ap.add_argument("--chart", action="store_true",
                     help="also redraw docs/assets/charts/pack_success.png")
     ap.add_argument("--from-json", default=None,
