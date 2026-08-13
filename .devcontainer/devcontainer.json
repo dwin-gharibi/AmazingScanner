@@ -1,0 +1,62 @@
+{
+  "name": "AmazingScanner",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "context": ".."
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "charliermarsh.ruff",
+        "ms-toolsai.jupyter",
+        "redhat.vscode-yaml",
+        "tamasfe.even-better-toml",
+        "editorconfig.editorconfig"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.testing.pytestEnabled": true,
+        "python.testing.pytestArgs": ["tests"],
+        "[python]": {
+          "editor.defaultFormatter": "charliermarsh.ruff",
+          "editor.formatOnSave": true,
+          "editor.codeActionsOnSave": { "source.organizeImports": "explicit" }
+        },
+        "files.exclude": {
+          "**/__pycache__": true,
+          "**/.pytest_cache": true,
+          "**/.ruff_cache": true
+        }
+      }
+    }
+  },
+
+  "postCreateCommand": "pip install -e '.[dev]' && pre-commit install || true",
+
+  "postAttachCommand": {
+    "hint": "echo 'Ready. Try: amazingscanner --help   |   task --list   |   task train:plan'"
+  },
+  "forwardPorts": [7860, 7861],
+  "portsAttributes": {
+    "7860": { "label": "AmazingScanner app", "onAutoForward": "notify" },
+    "7861": { "label": "Corner labeller", "onAutoForward": "silent" }
+  },
+
+  "remoteEnv": {
+    "OMP_NUM_THREADS": "4",
+    "PYTHONUNBUFFERED": "1"
+  },
+
+  "hostRequirements": {
+    "cpus": 4,
+    "memory": "8gb",
+    "storage": "32gb"
+  }
+}
