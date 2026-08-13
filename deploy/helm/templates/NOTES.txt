@@ -1,0 +1,32 @@
+{{ .Chart.Name }} {{ .Chart.AppVersion }} is installed as {{ .Release.Name }}.
+
+Reach it:
+{{- if .Values.ingress.enabled }}
+{{- range $host := .Values.ingress.hosts }}
+  http{{ if $.Values.ingress.tls }}s{{ end }}://{{ $host.host }}
+{{- end }}
+{{- else if eq .Values.service.type "ClusterIP" }}
+  kubectl --namespace {{ .Release.Namespace }} port-forward svc/{{ include "amazingscanner.fullname" . }} 7860:{{ .Values.service.port }}
+  open http://localhost:7860
+{{- else }}
+  kubectl --namespace {{ .Release.Namespace }} get svc {{ include "amazingscanner.fullname" . }}
+{{- end }}
+
+The first request loads and warms both networks, so it is slower than the rest.
+The startup probe allows {{ mul .Values.probes.startup.failureThreshold .Values.probes.startup.periodSeconds }}s for that before restarting the pod.
+
+{{- if not .Values.models.existingClaim }}
+
+NOTE  models.existingClaim is unset, so each replica serves whatever weights
+      were baked into the image. To ship a retrained model you would have to
+      rebuild it. For anything beyond a trial, train into a PVC and point
+      models.existingClaim at it:
+
+        helm upgrade {{ .Release.Name }} deploy/helm --set models.existingClaim=docscanner-models
+{{- end }}
+{{- if and .Values.autoscaling.enabled (not .Values.resources.requests.cpu) }}
+
+WARNING  Autoscaling is on but no CPU request is set. A HorizontalPodAutoscaler
+         targeting CPU utilisation has nothing to compute a percentage against
+         and will not scale.
+{{- end }}

@@ -1,0 +1,62 @@
+{{- if .Values.evaluationCronJob.enabled }}
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ include "amazingscanner.fullname" . }}-evaluate
+  labels:
+    {{- include "amazingscanner.labels" . | nindent 4 }}
+    app.kubernetes.io/component: evaluation
+spec:
+  schedule: {{ .Values.evaluationCronJob.schedule | quote }}
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      backoffLimit: 0
+      activeDeadlineSeconds: 7200
+      template:
+        metadata:
+          labels:
+            {{- include "amazingscanner.selectorLabels" . | nindent 12 }}
+            app.kubernetes.io/component: evaluation
+        spec:
+          restartPolicy: Never
+          serviceAccountName: {{ include "amazingscanner.serviceAccountName" . }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          containers:
+            - name: evaluate
+              image: {{ include "amazingscanner.image" . }}
+              imagePullPolicy: {{ .Values.image.pullPolicy }}
+              command: ["amazingscanner", "refresh", "--only", "evaluate", "charts", "report"]
+              env:
+                - name: OMP_NUM_THREADS
+                  value: {{ .Values.threads | quote }}
+              resources:
+                {{- toYaml .Values.evaluationCronJob.resources | nindent 16 }}
+              securityContext:
+                {{- toYaml .Values.containerSecurityContext | nindent 16 }}
+              volumeMounts:
+                - name: models
+                  mountPath: /app/models
+                  readOnly: true
+                - name: tmp
+                  mountPath: /tmp
+                - name: outputs
+                  mountPath: /app/outputs
+          volumes:
+            - name: models
+              {{- if .Values.models.existingClaim }}
+              persistentVolumeClaim:
+                claimName: {{ .Values.models.existingClaim }}
+              {{- else }}
+              emptyDir: {}
+              {{- end }}
+            - name: tmp
+              emptyDir:
+                sizeLimit: 4Gi
+            - name: outputs
+              emptyDir:
+                sizeLimit: 2Gi
+{{- end }}
