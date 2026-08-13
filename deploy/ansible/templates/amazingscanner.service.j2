@@ -1,0 +1,35 @@
+[Unit]
+Description=AmazingScanner document scanner
+Documentation=https://github.com/dwin-gharibi/AmazingScanner
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User={{ amazingscanner_user }}
+Restart=always
+RestartSec=10
+TimeoutStartSec=300
+
+ExecStartPre=-/usr/bin/podman rm -f amazingscanner
+ExecStart=/usr/bin/podman run \
+    --rm --replace --name amazingscanner \
+    --publish {{ amazingscanner_port }}:7860 \
+    --memory {{ amazingscanner_memory }} \
+    --cpus {{ amazingscanner_cpus }} \
+    --env OMP_NUM_THREADS={{ amazingscanner_threads }} \
+    --env GRADIO_SERVER_NAME=0.0.0.0 \
+    --volume {{ amazingscanner_home }}/models:/app/models:z \
+    --volume {{ amazingscanner_home }}/outputs:/app/outputs:z \
+    --read-only --tmpfs /tmp \
+    {{ amazingscanner_image }}
+ExecStop=/usr/bin/podman stop -t 20 amazingscanner
+
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths={{ amazingscanner_home }}
+
+[Install]
+WantedBy=multi-user.target

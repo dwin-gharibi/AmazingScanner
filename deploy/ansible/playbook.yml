@@ -1,0 +1,72 @@
+---
+- name: AmazingScanner
+  hosts: scanners
+  become: true
+
+  vars:
+    amazingscanner_image: ghcr.io/dwin-gharibi/amazingscanner:latest
+    amazingscanner_port: 7860
+    amazingscanner_threads: 4
+    amazingscanner_user: amazingscanner
+    amazingscanner_home: /opt/amazingscanner
+    amazingscanner_memory: 3g
+    amazingscanner_cpus: "4"
+
+  tasks:
+    - name: Install a container runtime
+      ansible.builtin.package:
+        name: "{{ container_packages | default(['podman']) }}"
+        state: present
+
+    - name: Create the service account
+      ansible.builtin.user:
+        name: "{{ amazingscanner_user }}"
+        home: "{{ amazingscanner_home }}"
+        shell: /usr/sbin/nologin
+        system: true
+        create_home: true
+
+    - name: Create the data directories
+      ansible.builtin.file:
+        path: "{{ amazingscanner_home }}/{{ item }}"
+        state: directory
+        owner: "{{ amazingscanner_user }}"
+        group: "{{ amazingscanner_user }}"
+        mode: "0750"
+      loop: [models, outputs, data]
+
+    - name: Pull the image
+      ansible.builtin.command:
+        cmd: "podman pull {{ amazingscanner_image }}"
+      register: pull
+      changed_when: "'Storing signatures' in pull.stdout or pull.rc == 0"
+
+    - name: Install the systemd unit
+      ansible.builtin.template:
+        src: amazingscanner.service.j2
+        dest: /etc/systemd/system/amazingscanner.service
+        mode: "0644"
+      notify: Restart amazingscanner
+
+    - name: Enable and start
+      ansible.builtin.systemd:
+        name: amazingscanner
+        enabled: true
+        state: started
+        daemon_reload: true
+
+    - name: Wait for the app to answer
+      ansible.builtin.uri:
+        url: "http://127.0.0.1:{{ amazingscanner_port }}/"
+        status_code: 200
+      register: probe
+      retries: 30
+      delay: 5
+      until: probe.status == 200
+
+  handlers:
+    - name: Restart amazingscanner
+      ansible.builtin.systemd:
+        name: amazingscanner
+        state: restarted
+        daemon_reload: true
