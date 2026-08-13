@@ -1,0 +1,420 @@
+{
+ "note": "TL,TR,BR,BL in photo pixels; generated from TEST-split scans at seeds >= 7000 - never seen by any model here",
+ "count": 18,
+ "items": [
+  {
+   "file": "photos/pack_00_clean.jpg",
+   "style": "clean",
+   "corners": [
+    [
+     226.16,
+     127.61
+    ],
+    [
+     651.94,
+     174.12
+    ],
+    [
+     894.34,
+     1161.45
+    ],
+    [
+     360.12,
+     1246.18
+    ]
+   ],
+   "target": "ground_truth/targets/pack_00_clean.png"
+  },
+  {
+   "file": "photos/pack_01_corner-hard.jpg",
+   "style": "corner-hard",
+   "corners": [
+    [
+     532.5,
+     -58.34
+    ],
+    [
+     1037.2,
+     884.95
+    ],
+    [
+     404.38,
+     1366.7
+    ],
+    [
+     -122.55,
+     627.26
+    ]
+   ],
+   "target": "ground_truth/targets/pack_01_corner-hard.png"
+  },
+  {
+   "file": "photos/pack_02_ood.jpg",
+   "style": "ood",
+   "corners": [
+    [
+     -93.05,
+     772.79
+    ],
+    [
+     517.78,
+     168.53
+    ],
+    [
+     1073.51,
+     345.15
+    ],
+    [
+     561.6,
+     904.37
+    ]
+   ],
+   "target": "ground_truth/targets/pack_02_ood.png"
+  },
+  {
+   "file": "photos/pack_03_clean.jpg",
+   "style": "clean",
+   "corners": [
+    [
+     0.54,
+     155.57
+    ],
+    [
+     1319.39,
+     -152.03
+    ],
+    [
+     1210.27,
+     1226.89
+    ],
+    [
+     258.78,
+     1445.68
+    ]
+   ],
+   "target": "ground_truth/targets/pack_03_clean.png"
+  },
+  {
+   "file": "photos/pack_04_corner-hard.jpg",
+   "style": "corner-hard",
+   "corners": [
+    [
+     744.16,
+     228.52
+    ],
+    [
+     1078.34,
+     290.79
+    ],
+    [
+     820.12,
+     993.77
+    ],
+    [
+     462.5,
+     740.2
+    ]
+   ],
+   "target": "ground_truth/targets/pack_04_corner-hard.png"
+  },
+  {
+   "file": "photos/pack_05_ood.jpg",
+   "style": "ood",
+   "corners": [
+    [
+     392.46,
+     37.62
+    ],
+    [
+     802.63,
+     510.93
+    ],
+    [
+     607.72,
+     1185.27
+    ],
+    [
+     -71.69,
+     894.25
+    ]
+   ],
+   "target": "ground_truth/targets/pack_05_ood.png"
+  },
+  {
+   "file": "photos/pack_06_clean.jpg",
+   "style": "clean",
+   "corners": [
+    [
+     242.23,
+     21.98
+    ],
+    [
+     1150.13,
+     300.69
+    ],
+    [
+     1082.55,
+     1168.39
+    ],
+    [
+     -122.34,
+     818.93
+    ]
+   ],
+   "target": "ground_truth/targets/pack_06_clean.png"
+  },
+  {
+   "file": "photos/pack_07_corner-hard.jpg",
+   "style": "corner-hard",
+   "corners": [
+    [
+     402.2,
+     -122.14
+    ],
+    [
+     958.31,
+     925.11
+    ],
+    [
+     94.59,
+     1072.54
+    ],
+    [
+     67.16,
+     476.73
+    ]
+   ],
+   "target": "ground_truth/targets/pack_07_corner-hard.png"
+  },
+  {
+   "file": "photos/pack_08_ood.jpg",
+   "style": "ood",
+   "corners": [
+    [
+     204.87,
+     202.94
+    ],
+    [
+     1313.39,
+     -33.39
+    ],
+    [
+     950.29,
+     1313.39
+    ],
+    [
+     -33.39,
+     1101.52
+    ]
+   ],
+   "target": "ground_truth/targets/pack_08_ood.png"
+  },
+  {
+   "file": "photos/pack_09_clean.jpg",
+   "style": "clean",
+   "corners": [
+    [
+     230.8,
+     -8.79
+    ],
+    [
+     1320.19,
+     134.48
+    ],
+    [
+     1183.82,
+     990.14
+    ],
+    [
+     -23.44,
+     868.62
+    ]
+   ],
+   "target": "ground_truth/targets/pack_09_clean.png"
+  },
+  {
+   "file": "photos/pack_10_corner-hard.jpg",
+   "style": "corner-hard",
+   "corners": [
+    [
+     158.72,
+     362.76
+    ],
+    [
+     836.16,
+     224.02
+    ],
+    [
+     624.56,
+     759.94
+    ],
+    [
+     298.78,
+     856.1
+    ]
+   ],
+   "target": "ground_truth/targets/pack_10_corner-hard.png"
+  },
+  {
+   "file": "photos/pack_11_ood.jpg",
+   "style": "ood",
+   "corners": [
+    [
+     416.68,
+     41.87
+    ],
+    [
+     966.47,
+     11.87
+    ],
+    [
+     822.96,
+     816.32
+    ],
+    [
+     321.67,
+     919.4
+    ]
+   ],
+   "target": "ground_truth/targets/pack_11_ood.png"
+  },
+  {
+   "file": "photos/pack_12_clean.jpg",
+   "style": "clean",
+   "corners": [
+    [
+     61.64,
+     554.32
+    ],
+    [
+     923.24,
+     464.99
+    ],
+    [
+     879.5,
+     1168.17
+    ],
+    [
+     74.01,
+     1284.37
+    ]
+   ],
+   "target": "ground_truth/targets/pack_12_clean.png"
+  },
+  {
+   "file": "photos/pack_13_corner-hard.jpg",
+   "style": "corner-hard",
+   "corners": [
+    [
+     469.3,
+     -48.92
+    ],
+    [
+     982.16,
+     -48.92
+    ],
+    [
+     865.55,
+     1006.92
+    ],
+    [
+     247.31,
+     802.64
+    ]
+   ],
+   "target": "ground_truth/targets/pack_13_corner-hard.png"
+  },
+  {
+   "file": "photos/pack_14_ood.jpg",
+   "style": "ood",
+   "corners": [
+    [
+     -179.96,
+     445.22
+    ],
+    [
+     340.87,
+     59.67
+    ],
+    [
+     1004.5,
+     727.42
+    ],
+    [
+     328.98,
+     1191.82
+    ]
+   ],
+   "target": "ground_truth/targets/pack_14_ood.png"
+  },
+  {
+   "file": "photos/pack_15_clean.jpg",
+   "style": "clean",
+   "corners": [
+    [
+     -57.21,
+     103.17
+    ],
+    [
+     1039.02,
+     101.87
+    ],
+    [
+     1214.87,
+     1018.99
+    ],
+    [
+     301.31,
+     1370.05
+    ]
+   ],
+   "target": "ground_truth/targets/pack_15_clean.png"
+  },
+  {
+   "file": "photos/pack_16_corner-hard.jpg",
+   "style": "corner-hard",
+   "corners": [
+    [
+     214.7,
+     353.35
+    ],
+    [
+     910.31,
+     195.0
+    ],
+    [
+     1185.6,
+     1005.33
+    ],
+    [
+     439.46,
+     1004.28
+    ]
+   ],
+   "target": "ground_truth/targets/pack_16_corner-hard.png"
+  },
+  {
+   "file": "photos/pack_17_ood.jpg",
+   "style": "ood",
+   "corners": [
+    [
+     676.46,
+     -31.09
+    ],
+    [
+     1001.49,
+     463.64
+    ],
+    [
+     620.77,
+     892.82
+    ],
+    [
+     336.13,
+     425.5
+    ]
+   ],
+   "target": "ground_truth/targets/pack_17_ood.png"
+  }
+ ]
+}
