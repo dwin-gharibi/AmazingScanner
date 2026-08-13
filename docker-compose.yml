@@ -1,0 +1,48 @@
+services:
+  scanner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: docscanner:latest
+    container_name: docscanner
+    ports:
+      - "7860:7860"
+    environment:
+      OMP_NUM_THREADS: "4"
+      DOCSCANNER_MODELS: /app/models
+    volumes:
+      - ./models:/app/models:ro
+      - ./outputs:/app/outputs
+    deploy:
+      resources:
+        limits:
+          cpus: "4.0"
+          memory: 6G
+        reservations:
+          memory: 2G
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:7860/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
+
+  trainer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: docscanner:latest
+    profiles: ["training"]
+    entrypoint: ["amazingscanner", "all"]
+    command: ["--out", "/app/runs", "--threads", "4"]
+    volumes:
+      - ./data:/app/data
+      - ./runs:/app/runs
+    environment:
+      OMP_NUM_THREADS: "4"
+    deploy:
+      resources:
+        limits:
+          cpus: "4.0"
+          memory: 10G
