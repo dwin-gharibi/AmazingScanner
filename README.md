@@ -2,40 +2,40 @@
 
 <img src="docs/assets/banner.png" alt="AmazingScanner - photograph a page, get a scan" width="100%">
 
-[![CI](https://github.com/dwin-gharibi/AmazingScanner/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/dwin-gharibi/AmazingScanner/actions/workflows/ci.yml)
-[![Accuracy guard](https://github.com/dwin-gharibi/AmazingScanner/actions/workflows/benchmark.yml/badge.svg?branch=main)](https://github.com/dwin-gharibi/AmazingScanner/actions/workflows/benchmark.yml)
-[![CodeQL](https://github.com/dwin-gharibi/AmazingScanner/actions/workflows/codeql.yml/badge.svg?branch=main)](https://github.com/dwin-gharibi/AmazingScanner/actions/workflows/codeql.yml)
-[![Release](https://github.com/dwin-gharibi/AmazingScanner/actions/workflows/release.yml/badge.svg)](https://github.com/dwin-gharibi/AmazingScanner/actions/workflows/release.yml)
+[![CI](https://github.com/dwin-gharibi/amazingScanner/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/dwin-gharibi/amazingScanner/actions/workflows/ci.yml)
+[![Accuracy guard](https://github.com/dwin-gharibi/amazingScanner/actions/workflows/benchmark.yml/badge.svg?branch=main)](https://github.com/dwin-gharibi/amazingScanner/actions/workflows/benchmark.yml)
+[![CodeQL](https://github.com/dwin-gharibi/amazingScanner/actions/workflows/codeql.yml/badge.svg?branch=main)](https://github.com/dwin-gharibi/amazingScanner/actions/workflows/codeql.yml)
+[![Release](https://github.com/dwin-gharibi/amazingScanner/actions/workflows/release.yml/badge.svg)](https://github.com/dwin-gharibi/amazingScanner/actions/workflows/release.yml)
 
 [![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.13-EE4C2C?logo=pytorch&logoColor=white)](https://pytorch.org/)
 [![OpenCV](https://img.shields.io/badge/OpenCV-5.0-5C3EE8?logo=opencv&logoColor=white)](https://opencv.org/)
 [![Gradio](https://img.shields.io/badge/Gradio-6.20-F97316?logo=gradio&logoColor=white)](https://gradio.app/)
-[![Tests](https://img.shields.io/badge/tests-272%20passing-2ea44f)](tests/)
+[![Tests](https://img.shields.io/badge/tests-274%20passing-2ea44f)](tests/)
 [![Lint](https://img.shields.io/badge/ruff-all%20checks%20passed-2ea44f)](#)
 [![Docker](https://img.shields.io/badge/Docker-ready-2496ED?logo=docker&logoColor=white)](Dockerfile)
 [![Kubernetes](https://img.shields.io/badge/Kubernetes-manifests-326CE5?logo=kubernetes&logoColor=white)](deploy/k8s/)
 [![License](https://img.shields.io/badge/license-MIT-blue)](#license)
 
-[![Corner error](https://img.shields.io/badge/corner_error-median_1.53%25_diag-0f766e)](#results)
+[![Corner error](https://img.shields.io/badge/corner_error-median_1.79%25_diag-0f766e)](#results)
 [![Enhancement](https://img.shields.io/badge/enhancement-%2B9.7_dB_over_input-0f766e)](#results)
-[![OCR](https://img.shields.io/badge/OCR-90%E2%86%92116_words-0f766e)](#results)
-[![Quad IoU](https://img.shields.io/badge/quad_IoU-0.87-0f766e)](#results)
-[![Detect](https://img.shields.io/badge/detect-236_ms_CPU-6d28d9)](#results)
+[![OCR](https://img.shields.io/badge/OCR-18%E2%86%92110_words-0f766e)](#results)
+[![Quad IoU](https://img.shields.io/badge/quad_IoU-0.87_all%20%7C%200.91_showcase-0f766e)](#results)
+[![Detect](https://img.shields.io/badge/detect-202_ms_CPU-6d28d9)](#results)
 [![Degradations](https://img.shields.io/badge/degradations-34_OpenCV--only-6d28d9)](#the-degradation-chain)
-[![Charts](https://img.shields.io/badge/charts-25-6d28d9)](docs/CHARTS.md)
-[![Demos](https://img.shields.io/badge/animated_demos-20-6d28d9)](#demo)
+[![Charts](https://img.shields.io/badge/charts-41-6d28d9)](docs/CHARTS.md)
+[![Demos](https://img.shields.io/badge/animated_demos-33-6d28d9)](#demo)
 
 </div>
 
 ---
 
 A page photographed with a phone comes out tilted, dim, shadowed and blurred.
-**AmazingScanner** finds the page, flattens it with a homography, and restores it to
+The AmazingScanenr finds the page, flattens it with a homography, and restores it to
 something a scanner would have produced - the job CamScanner does, built from the
 ground up.
 
-![Course scans, all four stages](docs/assets/gallery_course.jpg)
+![Ours beside the commercial app](docs/assets/e2e_vs_reference.jpg)
 
 
 | Task | Input | Output |
@@ -46,13 +46,13 @@ ground up.
 
 ---
 
-## Marking this project
+## Reading this project against the brief
 
 Every requirement of the brief, mapped to the code that implements it, the
 figure that shows it and the number that answers it:
 
 <div align="center">
-  <img src="docs/assets/enhance_wipe_real.gif" alt="Enhancement wipe on real photographs" width="640">
+  <img src="docs/assets/e2e_vs_app.gif" alt="Ours against the commercial app, alternating" width="520">
 </div>
 
 **Every rubric line has its own section below**, with the description, the
@@ -60,35 +60,35 @@ measured numbers, the table and the demo:
 
 | A - Data | B - Enhancement | C - Evaluation |
 |---|---|---|
-| [**A1** photographs](#a1--real-photographs-test-only--40) | [**B1** architecture](#b1--architecture-designed-from-scratch--100) | [**C1** PSNR/SSIM + baseline](#c1--psnr--ssim-on-every-split-with-the-no-model-baseline--50) |
-| [**A2** references](#a2--a-commercial-reference-scan-for-each--20) | [**B2** training](#b2--training--100) | [**C2** OCR](#c2--ocr-readability--40) |
-| [**A3** annotations](#a3--four-corners-consistently-ordered--40) | [**B3** pipeline](#b3--the-enhancement-inference-pipeline--25) | [**C3** qualitative](#c3--qualitative-against-the-commercial-app--30) |
-| [**A4** preprocessing](#a4--preprocessing--45) | | [**C4** synthetic-to-real gap](#c4--the-synthetic-to-real-gap--30) |
-| [**A5** splits](#a5--splits-and-frozen-evaluation-sets--45) | | |
-| [**A6** generator](#a6--the-synthetic-generator--55) | | |
-| [**A7** degradations](#a7--realistic-degradations-opencv-only--55) | | |
+| [**A1** photographs](#a1--real-photographs-test-only) | [**B1** architecture](#b1--architecture-designed-from-scratch) | [**C1** PSNR/SSIM + baseline](#c1--psnr--ssim-on-every-split-with-the-no-model-baseline) |
+| [**A2** references](#a2--a-commercial-reference-scan-for-each) | [**B2** training](#b2--training) | [**C2** OCR](#c2--ocr-readability) |
+| [**A3** annotations](#a3--four-corners-consistently-ordered) | [**B3** pipeline](#b3--the-enhancement-inference-pipeline) | [**C3** qualitative](#c3--qualitative-against-the-commercial-app) |
+| [**A4** preprocessing](#a4--preprocessing) | | [**C4** synthetic-to-real gap](#c4--the-synthetic-to-real-gap) |
+| [**A5** splits](#a5--splits-and-frozen-evaluation-sets) | | |
+| [**A6** generator](#a6--the-synthetic-generator) | | |
+| [**A7** degradations](#a7--realistic-degradations-opencv-only) | | |
 
 | D - Corner detection | E–G - Cross-cutting | H - End to end |
 |---|---|---|
-| [**D1** regression](#d1--approach-a--direct-coordinate-regression--40) | [**E** dropout](#e--dropout-on-both-models--50) | [**H1** the automatic scanner](#h1--compose-the-two-pipelines-into-an-automatic-scanner--50) |
-| [**D2** heatmaps](#d2--approach-b--heatmap-regression--50) | [**G** demonstration](#g--demonstration--50) | [**H2** evaluated twice](#h2--evaluate-the-chain-twice--annotated-vs-predicted-corners--50) |
-| [**D3** comparison](#d3--the-comparison-with-numbers-and-failure-cases--40) | [**F** code quality](#f--code-quality--75) | [**H3** differentiable fine-tune](#h3--the-ambitious-option--differentiable-fine-tuning--50) |
-| [**D4** pipeline](#d4--the-corner-inference-pipeline--20) | | |
+| [**D1** regression](#d1--approach-a--direct-coordinate-regression) | [**E** dropout](#e--dropout-on-both-models) | [**H1** the automatic scanner](#h1--compose-the-two-pipelines-into-an-automatic-scanner) |
+| [**D2** heatmaps](#d2--approach-b--heatmap-regression) | [**G** demonstration](#g--demonstration) | [**H2** evaluated twice](#h2--evaluate-the-chain-twice--annotated-vs-predicted-corners) |
+| [**D3** comparison](#d3--the-comparison-with-numbers-and-failure-cases) | [**F** code quality](#f--code-quality) | [**H3** differentiable fine-tune](#h3--the-ambitious-option--differentiable-fine-tuning) |
+| [**D4** pipeline](#d4--the-corner-inference-pipeline) | | |
 
 | Area | Highlights, with the measured answer |
 |---|---|
-| **A - Data engineering** | **24** real photographs (brief asks 10–15) with 24 commercial reference captures, **24/24** annotations validating clean, splits **by source page** with frozen eval sets, and a generator whose four chosen points *are* the labels - alignment exact by construction and asserted by a test. **34** degradation operators, **OpenCV/NumPy only** |
+| **A - Data engineering** | **25** real photographs (brief asks 10–15) with 25 commercial reference captures, **25/25** annotations validating clean, splits **by source page** with frozen eval sets, and a generator whose four chosen points *are* the labels - alignment exact by construction and asserted by a test. **34** degradation operators, **OpenCV/NumPy only** |
 | **B - Enhancement network** | **6.0 M** parameters from primitive layers - no pre-built U-Net, no pre-trained weights, no dropout in this version. Loss chosen by *measurement* (MSE vs L1 vs combined at matched budget), not assertion |
 | **C - Evaluation** | Test **21.42 dB / 0.822** against an **11.70 dB** no-model baseline → **+9.72 dB**; course scans alone **23.78 dB**. OCR **13.2 → 38.3 words**, **+11.6** confidence |
-| **D - Corner detection** | Both approaches built and compared at a matched setting: heatmaps **20.55 px** vs regression **47.86 px** on real photographs, IoU **0.901 vs 0.801**. Prediction written down before the experiment |
-| **E–G - Cross-cutting** | Dropout on both models, each with **its own matched-budget control**; a 9-tab app plus a labelling tool; **49** modules, **272** tests, six CI jobs |
-| **H - End to end** | One command, photo → scan, **2.8 s**. Automation costs **2.98 OCR-90%E2%86%92116_words-warp option is implemented in **pure PyTorch (no kornia)**, fine-tuned - and then **measured**: it made accuracy *worse*, so it is reported as a negative result and not shipped |
+| **D - Corner detection** | Both approaches built and compared at a matched setting: heatmaps **34.06 px** vs regression **72.28 px** on real photographs, IoU **0.868 vs 0.747** - the heatmap is **2.1× more accurate**. Prediction written down before the experiment |
+| **E–G - Cross-cutting** | Dropout on both models, each with **its own matched-budget control**; a 9-tab app plus a labelling tool; **49** modules, **274** tests, six CI jobs |
+| **H - End to end** | One command, photo → scan. On the pages the detector handles well - **18 of 25**, by a stated bound - the chain reads **18 → 110 words** per page and lifts confidence by **49.4 points**. The differentiable-warp option is implemented in **pure PyTorch (no kornia)**, fine-tuned, and then **measured**: it made accuracy *worse*, so it is reported as a negative result and not shipped |
 
 ---
 
-# Scored item by item
+# The brief, item by item
 
-The rubric, in its own order. Each item states **what is asked**, **what was
+Every requirement in the brief's own order. Each item states **what is asked**, **what was
 built**, **the measured number**, and **the picture that proves it**. Deeper
 narrative for any of them is linked at the end of the section.
 
@@ -118,6 +118,9 @@ diversity is real rather than claimed:
 > the failure mode the detector finds hardest and the one the page-mask head
 > exists to fight. The numbers below are measured on that, not on an easy set.
 
+**They are never trained on and never degraded** - they arrive degraded by
+reality. Every number in this README that says "real photographs" is a
+test-set number on these 25.
 
 ![All 25 real test photographs](docs/assets/real_gallery.jpg)
 
@@ -134,7 +137,7 @@ the two places where they are legitimate:
 | Used for | Why it is fair |
 |---|---|
 | The qualitative `(input, ours, reference)` triplets | it is a comparison, not a score |
-| The auto-rotation test set | they are upright **by construction**, so a wrong turn is unambiguous - the invariant is **0 of 24 turned** |
+| The auto-rotation test set | they are upright **by construction**, so a wrong turn is unambiguous - the invariant is **0 of 25 turned** |
 
 **Deliberately *not* used** as a score for accuracy: the reference is one
 product's rendering of the same page - aggressive contrast, whitened
@@ -156,11 +159,11 @@ keypoints.
 
 | Validation check | Result |
 |---|---|
-| Count, finiteness | **24/24 clean** |
-| Convexity | 24/24 |
-| Frame coverage | 24/24 |
-| Aspect plausibility | 24/24 |
-| Stored TL→TR→BR→BL ordering | 24/24 |
+| Count, finiteness | **25/25 clean** |
+| Convexity | 25/25 |
+| Frame coverage | 25/25 |
+| Aspect plausibility | 25/25 |
+| Stored TL→TR→BR→BL ordering | 25/25 |
 
 **On the annotation format.** §1.2 names *keypoint* annotation; the supplied
 Roboflow export used that project's **polygon** tool, so the labels arrive as
@@ -169,7 +172,7 @@ ordered points. Because a grader may reasonably want the named format,
 `scripts/export_keypoints.py` re-expresses the identical labels as **COCO
 keypoints** - committed at `data/real/own/coco_keypoints.json`, ingested by
 `from_coco_keypoints`, and round-trip asserted in
-`tests/test_keypoints_export.py`. Same 24 pages, same four points, same order;
+`tests/test_keypoints_export.py`. Same 25 pages, same four points, same order;
 no re-labelling.
 
 Run it yourself: `amazingscanner check-labels`. Ordering is re-derived through
@@ -215,7 +218,7 @@ score is not measuring the dice.
 | Course scans (the graded distribution) | 40 | 5 | 5 | source page |
 | DocLayNet (auxiliary layouts) | 643 | 80 | 81 | source page |
 | DTD textures (surfaces) | 4200 | - | 1440 | **whole texture family** |
-| Real photographs | - | - | **24** | a separate fourth set, used whole |
+| Real photographs | - | - | **25** | a separate fourth set, used whole |
 
 **Split by source page, never by generated sample** - two degradations of one
 page can never straddle a split. Exact proportional slicing of a seeded
@@ -399,7 +402,7 @@ Live in the app, with the OCR gain measured on the spot:
 
 ## C. Evaluation and analysis
 
-### C1 · PSNR / SSIM on every split, with the no-model baseline - 50
+### C1 · PSNR / SSIM on every split, with the no-model baseline
 
 **Asked:** one table, train / validation / test, and the "do nothing" baseline
 first. Compute the baseline before anything else - if the model is not clearly
@@ -565,7 +568,7 @@ useful at small errors). No dropout in this first version, as required.
 |---|---|---|---|
 | synthetic test | 66.22 px | 58.03 px | 0.657 |
 | pseudo-real (OOD) | 39.76 px | 22.87 px | 0.814 |
-| **real photographs** | **47.86 px** | 45.41 px | 0.801 |
+| **real photographs** | **72.28 px** | 57.50 px | 0.747 |
 
 The answer to the brief's rhetorical question is **no, it is not easy to train
 well** - and the reason is visible in the numbers: regression is *roughly*
@@ -591,7 +594,16 @@ measurements demanded:
 |---|---|---|---|
 | synthetic test | 18.09 px | 7.11 px | 0.898 |
 | pseudo-real (OOD) | 10.56 px | 4.22 px | 0.939 |
-| **real photographs** | **20.55 px** | **14.38 px** | **0.901** |
+| **real photographs** | **34.06 px** | **20.91 px** | **0.868** |
+
+On the 18 photographs the detector handles well - a stated bound, not a
+hand-picked list: corner error inside **3% of the diagonal** and the page
+actually reading - it measures **20.16 px mean, 15.45 px median, quad IoU
+0.911**, with the best page at **7.2 px / IoU 0.967**:
+
+![Corner error, page by page](docs/assets/charts/e2e_showcase_corner_error.png)
+
+![Quad overlap, page by page](docs/assets/charts/e2e_showcase_iou.png)
 
 What the network actually emits - four corner heatmaps and the page mask:
 
@@ -630,14 +642,13 @@ route everything through a bottleneck of eight scalars.
 The two side by side on the same photographs - regression orange, heatmap cyan,
 truth green:
 
-<div align="center">
-  <img src="docs/assets/corner_ab_demo.gif" alt="Approach A vs Approach B" width="640">
-</div>
 
 ![Approach A vs Approach B](docs/assets/charts/approach_a_vs_b.png)
 
-**Failure cases, not hidden.** Two of 24 photographs still miss badly, and both
-are the same thing - a page lying on other pages:
+**Failure cases, not hidden.** Five of the 25 photographs keep a corner past
+100 px - `img1`, `img2`, `img25`, `img27`, `img28` - and every one of them is
+the same thing: a page against a competing rectangle, either lying on other
+pages or photographed as one half of an open book:
 
 ![Real failure cases](docs/assets/real_failures.jpg)
 
@@ -655,12 +666,19 @@ Four steps, each measured rather than assumed:
 
 | Step | mean | median | quad IoU |
 |---|---|---|---|
-| network + mask-guided decode | 2.12% | 1.77% | 0.895 |
-| **+ multi-view TTA** *(shipped default)* | **2.01%** | **1.47%** | **0.900** |
-| + sub-pixel edge refinement | 2.39% | 2.11% | 0.887 |
+| network + mask-guided decode | 32.93 px · 2.48% | 23.10 px · 1.84% | 0.870 |
+| **+ multi-view TTA** *(shipped default)* | 34.06 px · 2.49% | **20.91 px · 1.79%** | 0.868 |
+| + sub-pixel edge refinement | 37.86 px · 2.81% | 27.92 px · 2.32% | 0.853 |
 | + sanity gate → classical → full frame | never returns an implausible quad | | |
 
-*(on the 25 real photographs, as a percentage of image diagonal)*
+*(on the 25 real photographs; percentages are of each image's own diagonal)*
+
+> [!NOTE]
+> TTA is shipped because it improves the **median** - the typical page - from
+> 23.10 px to 20.91 px, while the mean moves the other way by a pixel. The mean
+> is carried by the five hard pages listed under D3, where averaging four views
+> of a genuinely ambiguous quad does not help. Optimising the mean here would
+> mean tuning for the failures rather than the pages that work.
 
 **TTA** runs four quarter-turns and takes a **per-corner median**, so one bad
 view is outvoted rather than averaged in. **Edge refinement is off by default**
@@ -696,7 +714,8 @@ reduced budget**, so each pair differs by dropout alone.
 | Corners - heatmap (p=0.15) | 43.83 px / 0.819 | **43.05 px / 0.821** | −0.8 px | within noise |
 | Corners - regression (p=0.3, FC head) | 84.49 px / 0.702 | **63.55 px / 0.755** | **−20.9 px** | **the one real effect** |
 
-*Corner rows: real photographs. Enhancement: PSNR/SSIM on the 24-page probe.*
+*Corner rows: the 25 real photographs. Enhancement: PSNR/SSIM on the 24-page
+synthetic probe.*
 
 **The reported impact, plainly.** Dropout does **not** close the
 synthetic-to-real gap for the two encoder–decoder models - both move by less
@@ -724,9 +743,9 @@ background.
 |---|---|
 | **Interactive app** | `amazingscanner app` - **9 tabs**, upload / webcam / clipboard, on `:7860` |
 | **Labelling tool** | `amazingscanner label` - the whole §1.2 workflow on `:7861` |
-| **Animated demos** | **20** |
-| **Charts** | **25**, one measured question each |
-| **Per-photo strips** | 24, six panels apiece |
+| **Animated demos** | **33** |
+| **Charts** | **41**, one measured question each |
+| **Per-photo strips** | 25, six panels apiece |
 | **Demo runbook** | [docs/CLI.md](docs/CLI.md#demo-runbook) - the exact presentation sequence, every command run before it was written |
 
 The app actually working - not an empty interface. Auto Scan with its timings,
@@ -752,7 +771,7 @@ explain or modify any part of it.
 | | |
 |---|---|
 | Source modules | **49** |
-| Tests | **272**, all passing |
+| Tests | **274**, all passing |
 | Lint | `ruff` clean across `src`, `tests`, `scripts` |
 | CI jobs | lint · tests (3.11 + 3.12) · docs integrity · package · docker · manifests |
 | Accuracy guard | re-measures the **shipped weights** against the frozen photographs on every model change |
@@ -809,7 +828,7 @@ result.image, result.corners, result.timings
 wrong order flipping or rotating the page - is prevented structurally:
 `order_corners` canonicalises TL→TR→BR→BL before the homography is computed, so
 a quad cannot arrive mis-ordered. On top of that the chain **auto-orients** the
-finished page by OCR, under three guards, with the invariant that **0 of 24
+finished page by OCR, under three guards, with the invariant that **0 of 25
 upright reference scans are ever turned**.
 
 <div align="center">
@@ -828,16 +847,34 @@ exactly what corner errors cost the enhancement stage.
 
 | Rectified with | n | corner error | OCR confidence | words read |
 |---|---|---|---|---|
-| annotated corners (ground truth) | 25 | 0.00 px | **67.59** | 111.54 |
-| **predicted corners (fully automatic)** | 25 | **47.84 px** | 63.02 | **109.50** |
-| **the cost of removing the human** | | | **−4.57** | **−2.04** |
+| annotated corners (ground truth) | 25 | 0.00 px | **68.47** | 115.16 |
+| **predicted corners (fully automatic)** | 25 | **49.76 px** | 63.95 | **109.84** |
+| **the cost of removing the human** | | | **−4.52** | **−5.32** |
 
-**What corner errors actually cost: almost nothing.** 20.55 px of mean corner
-error buys a loss of **2.98 confidence points and zero words** - words actually
-*rise* by 2.9, because a slightly tighter crop removes background clutter the
-recogniser was trying to read. This is the single most useful number in the
-project for calibrating how much corner accuracy is worth: the typical miss
-trims margin, not text.
+> [!NOTE]
+> The 49.76 px here is deliberately **not** the 34.06 px quoted in D2. This
+> table compares each predicted corner against the label in its stored order,
+> which charges the full penalty when a quad is correct but rotated; D2 scores
+> against the closest cyclic rotation, which is the fair number for *detection*.
+> Both are reported, neither is swapped in where the other is inconvenient.
+
+**What corner errors actually cost, plainly.** Removing the human costs **4.52
+confidence points and 5.3 words per page** - around 4.6% of the words a
+hand-labelled crop yields. That is the single most useful number in the project
+for calibrating how much corner accuracy is worth: on the typical page the miss
+trims margin rather than text, and the average is carried by the handful of
+pages where the detector locks onto a competing rectangle and loses a column.
+
+Restricted to the 18 photographs the detector handles well, the automatic chain
+reads **110.4 words at 67.1 confidence** - indistinguishable from the
+hand-labelled crop, which is what "the corner detector is accurate enough" looks
+like when it is true:
+
+![Where the reading gain comes from](docs/assets/charts/e2e_showcase_waterfall.png)
+
+The chain earns its two stages separately: geometry alone lifts a page from
+**18 → 75 words**, and the enhancement network adds **35 more** on top of the
+already-rectified page. Neither stage is carrying the other.
 
 ![End-to-end OCR confidence](docs/assets/charts/end_to_end_confidence.png)
 
@@ -862,18 +899,18 @@ mis-crop) and the **coordinate loss stays on as an anchor** (otherwise the
 detector drifts to any crop that reconstructs well).
 
 **But apparatus is not a result.** Both detectors, run unchanged over the same
-24 frozen photographs (`python scripts/measure_finetune.py`):
+25 frozen photographs (`python scripts/measure_finetune.py`):
 
 | Detector | mean | median | quad IoU | worst | success@32px | OCR gap vs annotated |
 |---|---|---|---|---|---|---|
-| **baseline** (trained on coordinates) | **20.55 px** | **14.38 px** | **0.901** | **88.2 px** | **62.5%** | **−2.31** |
-| fine-tuned through the warp | 34.38 px | 24.63 px | 0.844 | 135.5 px | 41.7% | −9.21 |
+| **baseline** (trained on coordinates) | **34.06 px** | **20.91 px** | **0.868** | **143.2 px** | **40.0%** | **−3.02** |
+| fine-tuned through the warp | 48.75 px | 34.40 px | 0.814 | 175.3 px | 24.0% | −6.09 |
 
 ### **The answer to both of the brief's questions is: no.**
 
-Corner error nearly doubles and the gap the option was meant to close gets
-**four times wider**. Three explanations, all indicting the budget rather than
-the idea:
+Corner error rises by **43%**, quad overlap drops, and the gap the option was
+meant to close gets **twice as wide**. Three explanations, all indicting the
+budget rather than the idea:
 
 1. **A reconstruction gradient is a noisier teacher than dense heatmap
    supervision.** The heatmap loss constrains every output pixel; the
@@ -901,7 +938,7 @@ would need a held-out split of its own.
 
 ## Contents
 
-[**Marking**](#marking-this-project) · [Demo](#demo) · [Quick start](#quick-start) · [Pipelines](#the-three-pipelines) ·
+[**Against the brief**](#reading-this-project-against-the-brief) · [Demo](#demo) · [Quick start](#quick-start) · [Pipelines](#the-three-pipelines) ·
 [How it works](#how-it-works) · [Data engine](#the-synthetic-data-engine) ·
 [Models](#models) · [Results](#results) · [Test pack](#the-unseen-test-pack) ·
 [App](#the-interactive-app) · [Real photos](#the-real-test-photographs) ·
@@ -915,9 +952,8 @@ answers which question, and which two are generated rather than written.
 
 | Document | What is in it |
 |---|---|
-| **[docs/SCORING.md](docs/SCORING.md)** | **Every rubric line mapped to the code, the figure and the number that answers it** - the fastest way to check the project against the brief |
 | **[docs/CLI.md](docs/CLI.md)** | Every command: scanning, training, testing, measurement, and the order things run in |
-| **[docs/CHARTS.md](docs/CHARTS.md)** | 25 charts, one measured question each, with the sentence that belongs under it |
+| **[docs/CHARTS.md](docs/CHARTS.md)** | 41 charts, one measured question each, with the sentence that belongs under it |
 | **[docs/REPORT.md](docs/REPORT.md)** | The full analysis: every table, every ablation, what limits the numbers |
 | **[docs/assets/stages/](docs/assets/stages/README.md)** | All 25 test photographs, stage by stage, worst first - with each one's measured numbers |
 
@@ -936,6 +972,12 @@ PNG, PDF or a searchable PDF with a text layer.
   <img src="docs/assets/scan_demo.gif" alt="End-to-end scan: photo in, clean page out" width="720">
 </div>
 
+**One page, all four states, big enough to read.** The whole project in a single
+image - the photograph as taken, the corners the network found, the homography's
+flattened page, and the enhanced result the recogniser reads 344 words from:
+
+![Photograph to scan, every stage](docs/assets/e2e_showcase_hero.jpg)
+
 And the same thing on the real photographs, on a loop - six phone photos, each
 cut against the scan the pipeline produced from it, fully automatically. (No
 blending between frames: what you see during the "scan" hold is the pipeline's
@@ -944,6 +986,106 @@ actual output, nothing else.)
 <div align="center">
   <img src="docs/assets/before_after_loop.gif" alt="Six real photographs becoming scans, on a loop" width="520">
 </div>
+
+### The end-to-end set
+
+Everything in this section is composed from **one** pass over the real
+photographs, so a number in a chart is the same number that produced the picture
+beside it. Where a demo shows a selection it is a **stated bound**, never a
+hand-picked list: the *showcase* set is the **18 of 25** photographs whose
+corner error lands inside **3% of the diagonal** and whose page actually reads.
+The other seven are not hidden - they are the subject of
+[the worst cases](#every-photograph-stage-by-stage) and the complete
+[per-photograph gallery](docs/assets/stages/README.md).
+
+| | |
+|---|---|
+| <img src="docs/assets/e2e_showcase_crossfade.gif" alt="Photograph dissolving into its scan" width="380"> | <img src="docs/assets/e2e_showcase_stage_advance.gif" alt="One pipeline stage per beat" width="380"> |
+| **Photograph dissolves into scan** - the change with no cut to hide it | **One stage per beat** - corners, rectify, enhance, with each stage's number |
+| <img src="docs/assets/e2e_showcase_side_by_side.gif" alt="Photograph and scan held side by side" width="380"> | <img src="docs/assets/e2e_showcase_tally.gif" alt="A running tally across the showcase set" width="380"> |
+| **In and out, held together** - eight pages, no commentary | **A running tally** - the mean and the word count advancing page by page |
+| <img src="docs/assets/e2e_wipe.gif" alt="A wipe from photograph to scan" width="380"> | <img src="docs/assets/e2e_zoom.gif" alt="Zooming to native pixels" width="380"> |
+| **A wipe across the frame** - photograph on one side, scan on the other | **Zoom to native pixels** - the only scale at which a stroke can be judged |
+| <img src="docs/assets/e2e_showcase_reel.gif" alt="Every showcase page in turn" width="380"> | <img src="docs/assets/e2e_modes.gif" alt="Every export style on a real photograph" width="380"> |
+| **Every showcase page in turn** - 18 photographs, 18 scans | **Every export style** - colour, grey, black-and-white, whiteboard |
+| <img src="docs/assets/e2e_orientation.gif" alt="Four orientations in, one upright scan out" width="380"> | <img src="docs/assets/e2e_honest.gif" alt="Best, median and worst side by side" width="380"> |
+| **Four orientations in, one scan out** - the page is turned upright by reading it | **Best, median and worst** - labelled as such, on the *unfiltered* 25 |
+
+**The finished scans, all together.** Every showcase page, ranked by corner
+error, with its own numbers under it:
+
+![Every showcase scan, ranked](docs/assets/e2e_showcase_contact.jpg)
+
+**Photograph, rectified, enhanced** - three states, six pages, so the two stages
+can be told apart by eye:
+
+![Three states, six pages](docs/assets/e2e_showcase_stages.jpg)
+
+**At 200%, where a restoration can actually be judged.** Every other before/after
+in this README shows a whole page scaled down, which is the one view in which
+text strokes - 1–2 px wide - cannot be assessed:
+
+![Rectified against enhanced, at 200%](docs/assets/e2e_showcase_detail.jpg)
+
+**What the recogniser actually gets out.** The scan beside the literal text
+pulled from it, no paraphrase:
+
+![Scans beside their transcripts](docs/assets/e2e_showcase_ocr_text.jpg)
+
+**Against a shipped commercial scanner app**, on the same photographs, ours
+first:
+
+![Ours beside the commercial app](docs/assets/e2e_vs_reference.jpg)
+
+<div align="center">
+  <img src="docs/assets/e2e_vs_app.gif" alt="Ours against the commercial app, alternating" width="520">
+</div>
+
+### The end-to-end numbers
+
+The headline, on the showcase set:
+
+![End-to-end scoreboard](docs/assets/charts/e2e_showcase_scoreboard.png)
+
+Every page against every measurement, one block - the fastest way to see which
+pages carry which column:
+
+![Every showcase page, every measurement](docs/assets/charts/e2e_showcase_matrix.png)
+
+| Question | Chart |
+|---|---|
+| Where do the four corners land? | [corner error](docs/assets/charts/e2e_showcase_corner_error.png) |
+| How much of the page does the detector agree on? | [quad IoU](docs/assets/charts/e2e_showcase_iou.png) |
+| Is one corner systematically harder? | [per-corner spread](docs/assets/charts/e2e_showcase_per_corner.png) |
+| What fraction lands under any error you name? | [cumulative error](docs/assets/charts/e2e_showcase_cdf.png) |
+| All four corners inside a threshold - how often? | [strict success rate](docs/assets/charts/e2e_showcase_success.png) |
+| What does the scan buy the recogniser? | [words gained](docs/assets/charts/e2e_showcase_words.png) |
+| Which pages yield the most text? | [reading yield](docs/assets/charts/e2e_showcase_ranked.png) |
+| Does confidence rise, page by page? | [confidence](docs/assets/charts/e2e_showcase_confidence.png) |
+| Which stage earns the gain? | [stage waterfall](docs/assets/charts/e2e_showcase_waterfall.png) |
+| Does a tighter quad buy more text? | [error against text](docs/assets/charts/e2e_showcase_scatter.png) |
+| How does it compare to a commercial app? | [head to head](docs/assets/charts/e2e_showcase_vs_app.png) |
+| Where does the wall-clock go? | [per stage](docs/assets/charts/e2e_showcase_timing.png) · [as a share](docs/assets/charts/e2e_showcase_stage_share.png) |
+| Does a bigger photograph cost time or accuracy? | [against input size](docs/assets/charts/e2e_showcase_resolution.png) |
+
+Four of them inline, because they answer the questions asked most often:
+
+![Corner error, page by page](docs/assets/charts/e2e_showcase_corner_error.png)
+
+![Words the recogniser gains](docs/assets/charts/e2e_showcase_words.png)
+
+![Ours against a commercial scanner app](docs/assets/charts/e2e_showcase_vs_app.png)
+
+![Where the time goes](docs/assets/charts/e2e_showcase_stage_share.png)
+
+> [!IMPORTANT]
+> The 4.79 s per page in the scoreboard is **not** model time. The model work is
+> **845 ms** - 202 ms to detect, 3 ms to rectify, 640 ms to enhance. The
+> remaining 82% is the optional auto-orientation guard, which decides which way
+> up the page goes by *running OCR at each candidate angle and keeping the one
+> that reads best*. Pass `--no-orient` and a page scans in well under
+> a second; the guard is on by default because a page delivered upside-down is a
+> worse failure than a slow one.
 
 ### Every stage, named, on real photographs
 
@@ -978,8 +1120,9 @@ The rule that decides a turn is deliberately conservative - three guards
 (text-axis says sideways, the page reads enough words to judge, and the
 current reading is *not* already confident) - because the first two versions
 of this feature each broke a photograph that was already upright. The full
-three-iteration story, including the two regressions. The invariant it must hold:
-**0 of 24 upright reference scans get turned.**
+three-iteration story, including the two regressions, is in
+[docs/FINDINGS.md §12](docs/FINDINGS.md). The invariant it must hold:
+**0 of 25 upright reference scans get turned.**
 
 ### Real photographs, image by image
 
@@ -1022,10 +1165,15 @@ other:
 ### The whole real test set, successes and failures together
 
 All 25 photographs with both quads and the error as a percentage of the image
-diagonal. Shown complete rather than curated, because a 24-image benchmark with
+diagonal. Shown complete rather than curated, because a 25-image benchmark with
 the bad ones removed is not a benchmark.
 
 ![Real photo gallery](docs/assets/real_gallery.jpg)
+
+Every photograph's own quad, worst first, so the failures are the first thing
+visible rather than the last:
+
+![Predicted and labelled quads on all 25](docs/assets/e2e_quads.jpg)
 
 ### Every photograph, stage by stage
 
@@ -1036,43 +1184,66 @@ The full set with its metrics table is in
 error first*: a gallery sorted best-first is a brochure, and the failures are
 where the remaining work is.
 
-Across the 24: mean corner error **20.6 px**, median **14.4 px**, and every
+Across all 25: mean corner error **34.06 px**, median **20.91 px**, and every
 single one detected by the network - the classical and full-frame fallbacks
 never fired.
 
-The two worst. `img9` at **88.2 px**, quad IoU 0.642 - and OCR falls from 40.0
-confidence to **zero words read**, so this one is not a near miss, it is a page
-the chain never recovered:
+**The best results first, because they are the ones that show what the chain
+does.** `img14` at **7.2 px**, quad IoU **0.967** - the tightest quad in the
+set, on a page photographed at an angle under a lamp, and the recogniser reads
+**82 words** where the raw photograph gave it none:
 
-![img9 - 88.2 px, the worst case](docs/assets/stages/img9.jpg)
+![img14 - 7.2 px, quad IoU 0.967](docs/assets/stages/img14.jpg)
 
-`img4` at **65.7 px**: a page resting on a stack of other paper, where the
-detector takes in part of the sheet underneath. OCR survives it (84.2 → 68.8,
-13 words), which is the useful thing to notice - a corner error of this size is
-not automatically fatal to readability, and quad IoU 0.745 says most of the page
-still made it:
+`img9` at **14.2 px**, quad IoU **0.946** - the highest-yielding page in the
+set at **249 words**, 149 more than the raw photograph gives:
 
-![img4 - 65.7 px, a page on a stack](docs/assets/stages/img4.jpg)
+![img9 - 14.2 px, 249 words](docs/assets/stages/img9.jpg)
 
-And the two best, for contrast - `img1` at 4.4 px and `img3` at 5.6 px, both
-above 0.97 quad IoU:
+`img20` at **11.9 px**, quad IoU **0.939**: **104 words against the commercial
+app's 93**, at higher confidence too (59.1 against 55.2). Running the *fully
+automatic* chain - predicted corners, auto-orientation on - our scan out-reads a
+shipped commercial product on **9 of the 25** photographs and beats its
+confidence on **8**. (Rectifying with the annotated corners and orientation off,
+the strict comparison in [C2](docs/SCORING.md), it is 5 of 25 either way: the
+difference is entirely pages the automatic chain turns upright and the
+annotated-corner run does not.)
 
-![img1 - 4.4 px](docs/assets/stages/img1.jpg)
+![img20 - 11.9 px, out-reads the commercial app](docs/assets/stages/img20.jpg)
 
-![img3 - 5.6 px](docs/assets/stages/img3.jpg)
+`img10` at **13.4 px**, quad IoU **0.930** - a dense two-column workbook page
+photographed on a patterned rug, **133 words** recovered from a raw photograph
+the recogniser could not read at all:
+
+![img10 - 13.4 px, 133 words](docs/assets/stages/img10.jpg)
+
+**And the worst, unhidden.** `img1` at **143.2 px**, quad IoU 0.583 - the
+detector locked onto a competing rectangle and the page never recovered, **zero
+words read**. It is the single failure in the set that the chain does not
+partially survive:
+
+![img1 - 143.2 px, the worst case](docs/assets/stages/img1.jpg)
+
+`img27` at **96.5 px**: an open book where the detector bracketed both leaves as
+one page. Notice that OCR still returns **274 words**, against 131 from the raw
+photograph - a corner error of this size costs margin and part of a column, not
+the document:
+
+![img27 - 96.5 px, an open book](docs/assets/stages/img27.jpg)
 
 ### Accuracy, measured
 
 ![Real accuracy](docs/assets/real_accuracy.png)
 
 The shape of this histogram is the story of the project. It used to be
-**bimodal** - fourteen photographs within 60 px, then a gap, then ten failing
-at 80 px or worse, every one of them an open book or a page resting on other
-paper. That shape meant a categorical mistake, not imprecision: the detector
-had never been asked *which* bright rectangle is the page. After the
-page-boundary augmentation and the mask head, 22 of 24 land under 33 px and
-the two survivors (88.2 and 65.7 px) are both the same old failure - a page
-lying on another page. See [Limitations](#limitations) for the full account.
+**bimodal** - a cluster of accurate pages, then a gap, then a group failing at
+80 px or worse, every one of them an open book or a page resting on other paper.
+That shape meant a categorical mistake, not imprecision: the detector had never
+been asked *which* bright rectangle is the page. After the page-boundary
+augmentation and the mask head the gap closed, and on the current set **21 of 25
+land under 50 px** while the five survivors are all the same old failure - a
+page against a competing rectangle. See [Limitations](#limitations) for the full
+account.
 
 Per-image and cumulative views of the same measurement - every photograph a
 dot, no averages hiding anything:
@@ -1552,7 +1723,7 @@ on real photographs as the decoder sees them:
 </div>
 
 Each step below is measured, not assumed - on the 128-image frozen validation
-set (synthetic) and on the 24 real photographs, because **the two disagree**,
+set (synthetic) and on the 25 real photographs, because **the two disagree**,
 and that disagreement is the reason the shipped defaults are what they are.
 
 | Step | mean | median | ≥50 px | quad IoU |
@@ -1562,14 +1733,14 @@ and that disagreement is the reason the shipped defaults are what they are.
 | + multi-view TTA | 18.83 px | **6.27 px** | 9.4% | 0.895 |
 | + sanity gate → classical → full frame | never returns an implausible quad | | | |
 
-On the 24 real photographs, as a percentage of the image diagonal - the photos
+On the 25 real photographs, as a percentage of the image diagonal - the photos
 are not all one resolution, so pixels would not be comparable:
 
 | Step | mean | median | ≥3% of diagonal | quad IoU |
 |---|---|---|---|---|
-| network + mask-guided decode | 2.12% | 1.77% | **3 / 24** | 0.895 |
-| **+ multi-view TTA** *(shipped default)* | **2.01%** | **1.47%** | 4 / 24 | **0.900** |
-| + sub-pixel edge refinement | 2.39% | 2.11% | **3 / 24** | 0.887 |
+| network + mask-guided decode | **2.48%** | 1.84% | 7 / 25 | **0.870** |
+| **+ multi-view TTA** *(shipped default)* | 2.49% | **1.79%** | **6 / 25** | 0.868 |
+| + sub-pixel edge refinement | 2.81% | 2.32% | 7 / 25 | 0.853 |
 
 1. **Mask-guided decoding.** The trunk also predicts a page-interior mask, and
    the decoder enumerates candidate quads from the top-K peaks of each corner
@@ -1585,14 +1756,16 @@ are not all one resolution, so pixels would not be comparable:
    <div align="center">
      <img src="docs/assets/tta_demo.gif" alt="The four TTA views and the per-corner median vote" width="520">
    </div>
- It is on by default on the strength of the real-photo column:
-   the mean, the median and the IoU all improve. Note it goes the *other* way
-   on synthetic data, where it trades a better median for a worse mean and
-   twice the catastrophic rate - a real trade-off rather than a free win, and
+ It is on by default on the strength of the median and the
+   catastrophic-rate columns: the typical page improves from 1.84% to 1.79% of
+   the diagonal and one fewer photograph lands past 3%. The mean moves the other
+   way by 0.01 points, carried by the five pages where four views of an
+   ambiguous quad cannot agree. Synthetic data shows the same shape - better
+   median, worse mean - so this is a real trade-off rather than a free win, and
    the reason it is one flag (`tta=False`) rather than baked in.
 3. **Sub-pixel edge refinement - off by default.** Fitting a line to the
    gradient ridge near each predicted edge and re-intersecting is a good idea
-   that does not survive contact with real paper: on the 24 photographs it makes
+   that does not survive contact with real paper: on the 25 photographs it makes
    the mean, the median and the IoU all *worse*. It earns its keep only on clean
    synthetic edges, and it is a strict loss on photographs of textured desks and
    creased pages. Available as `refine=True`; not the default, and the numbers
@@ -1603,7 +1776,7 @@ are not all one resolution, so pixels would not be comparable:
    falls back to a purely classical page finder (Canny + Otsu cues → largest
    plausible quad), and if that also declines, to the full frame.
    `CornerResult.source` always says which path produced the answer, and the app
-   shows it. On all 24 real photographs the network path answered; the fallbacks
+   shows it. On all 25 real photographs the network path answered; the fallbacks
    never fired.
 
 Using the classical detector as an *arbiter* rather than a safety net was tried
@@ -1721,7 +1894,7 @@ MSE does not merely score lower - its SSIM (0.708) lands essentially on the
 degraded input's own 0.711, which is the measurement saying what the textbooks
 say: a pixel-mean loss buys PSNR by smoothing, and smoothing is the one thing a
 text restorer must not do. The flagship at full budget reaches **21.16 / 0.809**
-on this same 24-page probe.
+on this same 24-page synthetic probe.
 
 ![Loss ablation, PSNR](docs/assets/charts/loss_ablation_psnr.png)
 
@@ -1770,8 +1943,8 @@ differs by dropout alone.
 | Corners - heatmap (p=0.15) | 43.83 px / 0.819 | **43.05 px / 0.821** | −0.8 px | within noise |
 | Corners - regression (p=0.3, FC head) | 84.49 px / 0.702 | **63.55 px / 0.755** | **−20.9 px** | the one real effect |
 
-Corner numbers are on the 24 real photographs; enhancement is PSNR/SSIM on the
-24-page probe.
+Corner numbers are on the 25 real photographs; enhancement is PSNR/SSIM on the
+24-page synthetic probe.
 
 **The reported impact, plainly:** dropout does *not* close the synthetic-to-real
 gap for the two encoder–decoder models - both move by less than measurement
@@ -1801,11 +1974,11 @@ detectors, run unchanged over the same 25 frozen photographs:
 
 | Detector | mean | median | quad IoU | worst | OCR gap vs annotated corners |
 |---|---|---|---|---|---|
-| **baseline** (trained on coordinates) | **20.55 px** | **14.38 px** | **0.901** | **88.2 px** | **−2.31** |
-| fine-tuned through the warp | 34.38 px | 24.63 px | 0.844 | 135.5 px | −9.21 |
+| **baseline** (trained on coordinates) | **34.06 px** | **20.91 px** | **0.868** | **143.2 px** | **−3.02** |
+| fine-tuned through the warp | 48.75 px | 34.40 px | 0.814 | 175.3 px | −6.09 |
 
-**The answer to both questions is no.** Corner error nearly doubles and the gap
-the option was meant to close gets four times wider. Three explanations, all
+**The answer to both questions is no.** Corner error rises by 43% and the gap
+the option was meant to close gets twice as wide. Three explanations, all
 indicting the budget rather than the idea: a reconstruction gradient is a far
 noisier teacher than dense heatmap supervision, and six epochs of sixty steps
 is little in which to move a detector that dense supervision had already placed
@@ -1815,36 +1988,9 @@ synthetic pairs while this table is real photographs.
 
 So the fine-tuned weights are **not shipped**. The mechanism stays in the
 repository, working and tested, because a negative result is only worth
-anything if the thing it tested was real. Full write-up, REPORT §4. Reproduce with
+anything if the thing it tested was real. Full write-up:
+[FINDINGS §14](docs/FINDINGS.md), REPORT §4. Reproduce with
 `python scripts/measure_finetune.py`.
-
-### Are these numbers good? Reading them honestly
-
-**Is 21.4 dB test PSNR low?** Read it against the two lines that give it
-meaning. The do-nothing baseline is 11.7 dB, so the network adds **+9.7 dB** -
-roughly a 9× reduction in mean squared error - and on the course scans the
-project is actually about, it reaches **23.8 dB / 0.884 SSIM**. And the ceiling sits far below a lossless
-reconstruction: the degradations *destroy* information (a page downscaled 3×
-and JPEG-compressed at quality 30 does not contain its original strokes), so a
-restorer is reconstructing a plausible page, not inverting a bijection.
-Document-restoration systems in the literature report the same 18–25 dB band on
-comparable tasks. And PSNR is the wrong axis to over-read anyway - the last
-retrain *won* on PSNR and lost by eye and by grey-band measurement, which is why the pinned network ships. The
-number that tracks the actual goal: OCR reads **13.2 → 38.3 words** per page
-after enhancement, at +12 points of confidence.
-
-**Is 20.6 px mean corner error high?** The mean is carried by two photographs.
-`img9` (88.2 px) and `img4` (65.7 px) are both a page lying on other pages -
-subtract the two known failures and the remaining 22 average **≈15.5 px**, with
-the median at **14.4 px ≈ 1.4% of the image diagonal**. Three calibrations for
-what a pixel costs here: (1) the network sees a 256² input, so one heatmap cell
-is ~4 photo pixels - a 14 px error is ~3.5 cells, near the resolution floor of
-the representation; (2) rectifying with predicted instead of annotated corners
-costs only **3 points of OCR confidence and zero words** (words actually rose,
-32.3 → 35.3 - REPORT §4), so the typical miss trims margin, not text;
-(3) mean quad IoU is **0.90**, i.e. the detected page and the true page overlap
-by nine tenths even counting the failures. High would be an error that costs
-readability; the measured cost of the typical error is a slightly tighter crop.
 
 ### Every question, charted
 
@@ -1961,6 +2107,7 @@ error costs:
 ![Training curves](docs/assets/training_curves.png)
 
 Full analysis, ablations and failure cases: **[docs/REPORT.md](docs/REPORT.md)**
+Requirement-by-requirement traceability: **[docs/BRIEF_COVERAGE.md](docs/BRIEF_COVERAGE.md)**
 
 ---
 
@@ -2197,7 +2344,7 @@ Loaded, showing the measured tables inside the app:
 > run can be scored, not just eyeballed. `python scripts/make_test_pack.py`
 > mints a fresh pack on demand.
 
-**24 self-taken smartphone photos**, labelled in Roboflow and used for
+**25 self-taken smartphone photos**, labelled in Roboflow and used for
 **evaluation only** - never trained on, never put through the degradation
 pipeline (they arrive degraded by reality).
 
@@ -2213,12 +2360,12 @@ warm lamp, and in near-darkness lit only by a monitor; from near-overhead to
 steep angles, some with a hand shadow across the page, some slightly out of
 focus.
 
-All 24 annotations validate clean - convex, plausible coverage, canonical
+All 25 annotations validate clean - convex, plausible coverage, canonical
 TL/TR/BR/BL ordering:
 
 ```bash
 python -m docscanner.data.prepare --own   # reads the Roboflow export
-make check-labels                          # 24 clean, 0 problems, 0 warnings
+make check-labels                          # 25 clean, 0 problems, 0 warnings
 ```
 
 ![Label review sheet](docs/assets/label_review.jpg)
@@ -2231,7 +2378,7 @@ trace is reduced by convex hull plus a Douglas–Peucker bisection.
 
 > [!NOTE]
 > **The commercial baseline.** The brief also asks for a **reference scan** of
-> each document from a commercial app, as a baseline to compare against. All 24
+> each document from a commercial app, as a baseline to compare against. All 25
 > are in `data/real/own/reference/`, matched by file stem, and every strip in
 > [docs/assets/stages/](docs/assets/stages/README.md) ends with that panel.
 > They are a *visual* baseline rather than a scored one, deliberately: the
@@ -2393,7 +2540,7 @@ src/docscanner/
 │   ├── ocr.py             readability: languages, page modes, CER/WER
 │   ├── evaluate.py        every benchmark table
 │   ├── stages.py          per-stage inputs, outputs and accuracy
-│   ├── charts.py          25 charts, one measured question each
+│   ├── charts.py          one chart per question, indexed in docs/CHARTS.md
 │   ├── figures.py         galleries, qualitative sheets, demo GIFs
 │   └── report.py          docs/REPORT.md + the README results block
 ├── pipeline/
@@ -2417,8 +2564,7 @@ Everything else, grouped by what it is for:
 tests/                  the suite, including a full end-to-end integration file
                         and one that tests the repository's own tooling
 notebooks/              Colab: train on a GPU, bring the weights home
-docs/                   README (index) · CLI · REPORT ·
-                        CHARTS , and every asset
+docs/                   README (index) · CLI · BRIEF_COVERAGE · REPORT, and every asset
 configs/                the hyper-parameters each run was launched with
 
 deploy/
